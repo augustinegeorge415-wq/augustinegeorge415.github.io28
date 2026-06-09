@@ -154,4 +154,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-*© 2025 Oru Trip Pokam — Discover Hidden Places. Find Travel Partners. Explore India Together.*
+*© 2026 Oru Trip Pokam Undo — Discover Hidden Places. Find Travel Partners. Explore India Together.*
