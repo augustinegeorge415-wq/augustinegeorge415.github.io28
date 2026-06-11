@@ -983,14 +983,14 @@ renderStates();renderGems();renderPartners();renderTrips();renderStories();
 observe();
 </script>
  <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { getAuth, signInWithPopup, GoogleAuthProvider,
+           signOut, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+  import { getStorage } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-storage.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyBhmrmiINEvKI2lIrKKgvCw41v5ru2xC6Y",
     authDomain: "oru-trip-pokam-undo.firebaseapp.com",
@@ -1001,9 +1001,50 @@ observe();
     measurementId: "G-8ZMY45FWEQ"
   };
 
-  // Initialize Firebase
+  // Initialize
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+  const provider = new GoogleAuthProvider();
+
+  // Watch login state
+  onAuthStateChanged(auth, (user) => {
+    const loginBtn = document.querySelector('.nav-login-btn');
+    const navUser = document.querySelector('.nav-user');
+    const navName = document.querySelector('.nav-user-name');
+    const navAvatar = document.querySelector('.nav-user-avatar');
+
+    if (user) {
+      loginBtn.style.display = 'none';
+      navUser.classList.add('show');
+      navName.textContent = user.displayName || user.email;
+      navAvatar.textContent = (user.displayName || user.email)[0].toUpperCase();
+    } else {
+      loginBtn.style.display = '';
+      navUser.classList.remove('show');
+    }
+  });
+
+  // Google Login on button click
+  document.querySelector('.nav-login-btn').addEventListener('click', async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (e) {
+      alert('Login failed: ' + e.message);
+    }
+  });
+
+  // Logout
+  document.querySelector('.nav-logout').addEventListener('click', () => {
+    signOut(auth);
+  });
+
+  // Make available globally for later features
+  window.db = db;
+  window.storage = storage;
+  window.auth = auth;
 </script>
 </body>
 </html>
