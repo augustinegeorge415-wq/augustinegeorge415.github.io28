@@ -987,7 +987,7 @@ observe();
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
   import { getAuth, signInWithPopup, GoogleAuthProvider,
            signOut, onAuthStateChanged }
-  from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+    from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
   import { getFirestore } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
   import { getStorage } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-storage.js";
 
@@ -1001,7 +1001,6 @@ observe();
     measurementId: "G-8ZMY45FWEQ"
   };
 
-  // Initialize
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const auth = getAuth(app);
@@ -1009,25 +1008,23 @@ observe();
   const storage = getStorage(app);
   const provider = new GoogleAuthProvider();
 
-  // Watch login state
+  // ===== AUTH STATE =====
   onAuthStateChanged(auth, (user) => {
-    const loginBtn = document.querySelector('.nav-login-btn');
-    const navUser = document.querySelector('.nav-user');
-    const navName = document.querySelector('.nav-user-name');
-    const navAvatar = document.querySelector('.nav-user-avatar');
-
     if (user) {
-      loginBtn.style.display = 'none';
-      navUser.classList.add('show');
-      navName.textContent = user.displayName || user.email;
-      navAvatar.textContent = (user.displayName || user.email)[0].toUpperCase();
+      document.querySelector('.nav-login-btn').style.display = 'none';
+      document.querySelector('.nav-cta').style.display = 'none';
+      document.querySelector('.nav-user').classList.add('show');
+      document.querySelector('.nav-user-name').textContent = user.displayName || user.email;
+      document.querySelector('.nav-user-avatar').textContent =
+        (user.displayName || user.email)[0].toUpperCase();
     } else {
-      loginBtn.style.display = '';
-      navUser.classList.remove('show');
+      document.querySelector('.nav-login-btn').style.display = '';
+      document.querySelector('.nav-cta').style.display = '';
+      document.querySelector('.nav-user').classList.remove('show');
     }
   });
 
-  // Google Login on button click
+  // ===== GOOGLE LOGIN =====
   document.querySelector('.nav-login-btn').addEventListener('click', async () => {
     try {
       await signInWithPopup(auth, provider);
@@ -1036,15 +1033,15 @@ observe();
     }
   });
 
-  // Logout
+  // ===== LOGOUT =====
   document.querySelector('.nav-logout').addEventListener('click', () => {
     signOut(auth);
   });
 
-  // Make available globally for later features
+  // Make db & storage global for later use
   window.db = db;
   window.storage = storage;
   window.auth = auth;
-</script>
+</script>   
 </body>
 </html>
