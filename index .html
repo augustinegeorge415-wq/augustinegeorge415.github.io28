@@ -1638,6 +1638,44 @@ Object.assign(window,{
 });
 fillStateDDs();
 observe();
+  fillStateDDs();
+observe();
+
+// ═══════ ALL INDIA TOURIST SPOTS ═══════
+(function loadTouristSpots(){
+  const container = document.getElementById('places-container');
+  const loading   = document.getElementById('places-loading');
+  const errorBox  = document.getElementById('places-error');
+
+  fetch('./tourist_spots/_ALL_INDIA_TOURIST_SPOTS.json')
+    .then(r => { if(!r.ok) throw new Error('Could not load tourist spots ('+r.status+')'); return r.json(); })
+    .then(data => {
+      loading.style.display = 'none';
+      if(!Array.isArray(data) || !data.length){
+        container.innerHTML = '<div class="empty-state"><div class="ei">🗺️</div><p>No tourist spots found.</p></div>';
+        return;
+      }
+      container.innerHTML = data.map(place => {
+        const emoji = {Nature:'🌿',Heritage:'🏛️',Adventure:'⛰️',Food:'🍜',Offbeat:'🔮',Beach:'🏖️',Mountains:'🏔️',Temple:'🛕',Waterfall:'🌊'}[place.category] || '🌟';
+        return `
+          <div class="gem-card">
+            <div class="gem-img">${emoji}</div>
+            <div class="gem-body">
+              ${place.category ? `<span class="gem-cat">${place.category}</span>` : ''}
+              <div class="gem-name">${place.name || ''}</div>
+              <div class="gem-state">📍 ${place.state || ''}</div>
+              <div class="gem-desc">${place.description || ''}</div>
+            </div>
+          </div>`;
+      }).join('');
+      observe();
+    })
+    .catch(err => {
+      loading.style.display = 'none';
+      errorBox.style.display = 'block';
+      errorBox.textContent = '⚠️ ' + err.message;
+    });
+})();
 </script>
 </body>
 </html>
