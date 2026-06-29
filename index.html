@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; img-src 'self' data: https:;">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Oru Trip Pokam — Explore India Together</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--parchment:#FDF6EC;--parchment-dark:#F5E8D0;--green:#2D5016;--green-light:#3D6B1F;--green-pale:#EAF2E0;--terra:#E07B39;--terra-light:#F09060;--gold:#F5C842;--gold-pale:#FEF3BB;--text:#1A1A1A;--text-mid:#4A4A4A;--text-light:#7A7A7A;--white:#FFF;--shadow:0 4px 24px rgba(45,80,22,.10);--shadow-lg:0 8px 40px rgba(45,80,22,.16);--radius:16px;--radius-sm:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--parchment);color:var(--text);overflow-x:hidden}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--parchment-dark)}::-webkit-scrollbar-thumb{background:var(--terra);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(253,246,236,.95);backdrop-filter:blur(12px);border-bottom:1.5px solid var(--parchment-dark);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px;transition:box-shadow .3s}
+nav.scrolled{box-shadow:var(--shadow)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.nav-logo-text{font-family:'Fraunces',serif;font-weight:800;font-size:1.1rem;color:var(--green);line-height:1.1}
+.nav-logo-text span{display:block;font-size:.5rem;font-family:'Nunito',sans-serif;font-weight:600;color:var(--terra);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:22px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text-mid);font-weight:600;font-size:.83rem;transition:color .2s;position:relative;cursor:pointer}
+.nav-links a.active,.nav-links a:hover{color:var(--green)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--terra);border-radius:2px}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-cta{background:var(--terra);color:#fff;border:none;padding:8px 18px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.84rem;cursor:pointer;transition:.2s}
+.nav-cta:hover{background:var(--terra-light);transform:translateY(-1px)}
+.nav-login-btn{background:transparent;color:var(--green);border:2px solid var(--green);padding:7px 16px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.84rem;cursor:pointer;transition:.2s}
+.nav-login-btn:hover{background:var(--green);color:#fff}
+.nav-user{display:none;align-items:center;gap:8px}
+.nav-user.show{display:flex}
+.nav-user-avatar{width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;font-family:'Fraunces',serif}
+.nav-user-name{font-size:.84rem;font-weight:700;color:var(--green)}
+.nav-logout{background:none;border:none;color:var(--text-light);font-size:.78rem;cursor:pointer;font-family:'Nunito',sans-serif;text-decoration:underline}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--green);border-radius:2px}
+
+/* HERO */
+#hero{min-height:100vh;padding:100px 5% 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#f0e8d8 0%,#e8f2dc 45%,#fdf6ec 100%)}
+.hero-map-bg{position:absolute;inset:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 900'%3E%3Cpath d='M400 50 Q500 80 550 150 Q620 200 640 280 Q680 350 660 430 Q640 510 600 560 Q580 600 540 640 Q500 680 480 720 Q460 760 400 800 Q340 760 320 720 Q300 680 260 640 Q220 600 200 560 Q160 510 140 430 Q120 350 160 280 Q180 200 250 150 Q300 80 400 50Z' fill='%232D5016'/%3E%3C/svg%3E");background-size:58% auto;background-position:right -5% center;background-repeat:no-repeat}
+.hero-content{position:relative;z-index:2;max-width:640px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold-pale);border:1.5px solid var(--gold);color:var(--green);padding:6px 16px;border-radius:50px;font-size:.76rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:22px;animation:fadeUp .8s ease both}
+.hero-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;color:var(--green);margin-bottom:16px;animation:fadeUp .8s .1s ease both}
+.hero-title em{font-style:italic;color:var(--terra)}
+.hero-sub{font-size:1.05rem;color:var(--text-mid);line-height:1.7;margin-bottom:34px;max-width:480px;animation:fadeUp .8s .2s ease both}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s .3s ease both}
+.btn-primary{background:var(--green);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--green-light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(45,80,22,.3)}
+.btn-outline{background:transparent;color:var(--green);border:2px solid var(--green);padding:12px 28px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block}
+.btn-outline:hover{background:var(--green);color:#fff;transform:translateY(-2px)}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px;animation:fadeUp .8s .4s ease both}
+.hero-tag{background:#fff;border:1.5px solid var(--parchment-dark);color:var(--text-mid);padding:7px 16px;border-radius:50px;font-size:.82rem;font-weight:600;box-shadow:var(--shadow);animation:float 3s ease-in-out infinite}
+.hero-tag:nth-child(2){animation-delay:.5s}.hero-tag:nth-child(3){animation-delay:1s}.hero-tag:nth-child(4){animation-delay:1.5s}.hero-tag:nth-child(5){animation-delay:.8s}.hero-tag:nth-child(6){animation-delay:1.3s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+section{padding:80px 5%}
+.section-header{text-align:center;margin-bottom:48px}
+.section-label{display:inline-block;background:var(--gold-pale);color:var(--green);font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:50px;border:1.5px solid var(--gold);margin-bottom:12px}
+.section-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.7rem,3.5vw,2.5rem);color:var(--green);line-height:1.2;margin-bottom:12px}
+.section-sub{color:var(--text-mid);font-size:.96rem;max-width:520px;margin:0 auto;line-height:1.7}
+.section-header-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+.section-header-row .section-title{margin-bottom:0;text-align:left}
+
+/* BTNS */
+.add-btn{display:inline-flex;align-items:center;gap:8px;background:var(--terra);color:#fff;border:none;padding:10px 20px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.86rem;cursor:pointer;transition:.2s;white-space:nowrap}
+.add-btn:hover{background:var(--terra-light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,123,57,.35)}
+.del-btn{display:inline-flex;align-items:center;gap:5px;background:transparent;color:#c0392b;border:1.5px solid #e8b4b0;padding:6px 13px;border-radius:50px;font-size:.75rem;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:.2s;margin-top:10px}
+.del-btn:hover{background:#c0392b;color:#fff;border-color:#c0392b}
+
+/* FEATURES */
+#features{background:var(--green);position:relative;overflow:hidden}
+#features::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:rgba(245,200,66,.1);border-radius:50%}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.feature-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:32px 24px;transition:.3s}
+.feature-card:hover{background:rgba(255,255,255,.13);transform:translateY(-4px)}
+.feature-icon{font-size:2rem;margin-bottom:14px}
+.feature-card h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;color:#fff;margin-bottom:8px}
+.feature-card p{color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.6;margin-bottom:18px}
+.feature-card .add-btn{background:var(--gold);color:var(--green)}
+.feature-card .add-btn:hover{background:#f7d466}
+#features .section-label{background:rgba(245,200,66,.18);border-color:var(--gold);color:var(--gold)}
+#features .section-title{color:#fff}
+#features .section-sub{color:rgba(255,255,255,.68)}
+
+/* STATES */
+#states{background:var(--parchment)}
+.states-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:13px}
+.state-card{background:#fff;border:1.5px solid var(--parchment-dark);border-radius:var(--radius-sm);padding:16px 12px;text-align:center;cursor:pointer;transition:.25s;position:relative;overflow:hidden}
+.state-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--green-pale),transparent);opacity:0;transition:.25s}
+.state-card:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:var(--shadow)}
+.state-card:hover::before{opacity:1}
+.state-card:hover .state-add{opacity:1;transform:translateY(0)}
+.state-emoji{font-size:1.5rem;margin-bottom:7px}
+.state-name{font-weight:700;font-size:.85rem;color:var(--green);margin-bottom:2px;position:relative}
+.state-type{font-size:.7rem;color:var(--text-light);position:relative}
+.state-count{font-size:.68rem;color:var(--terra);font-weight:700;margin-top:3px;position:relative}
+.state-add{position:absolute;bottom:0;left:0;right:0;background:var(--green);color:#fff;font-size:.72rem;font-weight:700;padding:6px;opacity:0;transform:translateY(4px);transition:.25s;cursor:pointer;border:none;font-family:'Nunito',sans-serif}
+
+/* STATE SPOTS PANEL */
+.state-spots-panel{background:var(--green-pale);border:1.5px solid var(--green);border-radius:var(--radius);padding:28px;margin-top:28px;display:none}
+.state-spots-panel.open{display:block}
+.state-spots-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.state-spots-title{font-family:'Fraunces',serif;font-weight:700;font-size:1.3rem;color:var(--green)}
+.close-panel{background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-light);transition:.2s}
+.close-panel:hover{color:var(--terra)}
+.spots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.spot-card{background:#fff;border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow);transition:.25s}
+.spot-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.spot-img{height:140px;background:linear-gradient(135deg,var(--green-pale),var(--gold-pale));display:flex;align-items:center;justify-content:center;font-size:2.2rem;overflow:hidden;position:relative}
+.spot-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.spot-body{padding:14px}
+.spot-cat{display:inline-block;background:var(--gold-pale);color:var(--green);font-size:.66rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:50px;border:1px solid var(--gold);margin-bottom:7px}
+.spot-name{font-family:'Fraunces',serif;font-weight:600;font-size:1rem;color:var(--green);margin-bottom:3px}
+.spot-loc{font-size:.76rem;color:var(--terra);font-weight:600;margin-bottom:5px}
+.spot-desc{font-size:.82rem;color:var(--text-mid);line-height:1.4;margin-bottom:6px}
+.spot-travel{font-size:.76rem;color:var(--text-light);font-style:italic;margin-bottom:6px}
+.spot-by{font-size:.72rem;color:var(--text-light)}
+
+/* GEMS */
+#gems{background:linear-gradient(180deg,var(--parchment-dark) 0%,var(--parchment) 100%)}
+.gems-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.gem-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.3s}
+.gem-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.gem-img{height:170px;background:linear-gradient(135deg,var(--green-pale),var(--gold-pale));display:flex;align-items:center;justify-content:center;font-size:2.8rem;position:relative;overflow:hidden}
+.gem-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.gem-body{padding:18px}
+.gem-cat{display:inline-block;background:var(--gold-pale);color:var(--green);font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:50px;border:1px solid var(--gold);margin-bottom:8px}
+.gem-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;color:var(--green);margin-bottom:3px}
+.gem-state{font-size:.78rem;color:var(--terra);font-weight:600;margin-bottom:7px}
+.gem-desc{font-size:.84rem;color:var(--text-mid);line-height:1.5;margin-bottom:10px}
+.gem-contrib{font-size:.74rem;color:var(--text-light);display:flex;align-items:center;gap:5px}
+
+/* PARTNERS */
+#partners{background:var(--parchment)}
+.partners-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+.partner-card{background:#fff;border-radius:var(--radius);padding:24px 20px;box-shadow:var(--shadow);transition:.3s;border-top:4px solid var(--terra)}
+.partner-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.partner-avatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--terra));display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;margin-bottom:13px;font-family:'Fraunces',serif;font-weight:800}
+.partner-name{font-family:'Fraunces',serif;font-weight:700;font-size:1.08rem;color:var(--green);margin-bottom:4px}
+.partner-style{display:inline-block;background:var(--green-pale);color:var(--green);font-size:.71rem;font-weight:700;padding:3px 10px;border-radius:50px;margin-bottom:9px}
+.partner-dest{font-size:.82rem;color:var(--terra);font-weight:600;margin-bottom:3px}
+.partner-date{font-size:.76rem;color:var(--text-light);margin-bottom:9px}
+.partner-bio{font-size:.84rem;color:var(--text-mid);line-height:1.5;margin-bottom:12px}
+.connect-btn{background:var(--green);color:#fff;border:none;padding:9px 18px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:.2s;width:100%}
+.connect-btn:hover{background:var(--green-light)}
+
+/* TRIPS */
+#trips{background:var(--green-pale)}
+.trips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
+.trip-card{background:#fff;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:.3s;border-left:5px solid var(--green)}
+.trip-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.trip-name{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--green);margin-bottom:7px}
+.trip-dest{font-size:.86rem;color:var(--terra);font-weight:600;margin-bottom:6px}
+.trip-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:9px}
+.trip-meta-item{font-size:.76rem;color:var(--text-light)}
+.trip-desc{font-size:.84rem;color:var(--text-mid);line-height:1.5;margin-bottom:10px}
+.trip-contact-row{background:var(--green-pale);border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:.8rem;color:var(--green)}
+.trip-contact-row span{font-weight:700}
+.trip-map-link{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;color:var(--terra);text-decoration:none;font-weight:600;margin-bottom:10px}
+.trip-map-link:hover{text-decoration:underline}
+.trip-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.trip-open{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:50px}
+.trip-open.yes{background:var(--gold-pale);color:var(--green);border:1px solid var(--gold)}
+.trip-open.no{background:#fee;color:#c00;border:1px solid #fcc}
+.trip-actions{display:flex;gap:8px;flex-wrap:wrap}
+.interested-btn{background:var(--terra);color:#fff;border:none;padding:7px 14px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:.2s}
+.interested-btn:hover{background:var(--terra-light)}
+.contact-partner-btn{background:var(--green);color:#fff;border:none;padding:7px 14px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:.2s}
+.contact-partner-btn:hover{background:var(--green-light)}
+
+/* STORIES */
+#stories{background:var(--parchment)}
+.stories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
+.story-card{background:#fff;border-radius:var(--radius);padding:24px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:.3s}
+.story-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.story-card::before{content:'"';position:absolute;top:-10px;left:14px;font-family:'Fraunces',serif;font-size:4.5rem;color:var(--gold);opacity:.25;line-height:1}
+.story-photo{height:160px;border-radius:10px;overflow:hidden;margin-bottom:14px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative}
+.story-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.story-text{font-size:.92rem;color:var(--text-mid);line-height:1.7;margin-bottom:12px;font-style:italic;position:relative;z-index:1}
+.story-tip{background:var(--gold-pale);border-left:3px solid var(--gold);padding:7px 11px;border-radius:0 8px 8px 0;font-size:.78rem;color:var(--text-mid);margin-bottom:12px}
+.story-author{display:flex;align-items:center;gap:9px}
+.story-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--terra),var(--gold));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;font-family:'Fraunces',serif;flex-shrink:0}
+.story-author-info strong{display:block;font-size:.84rem;color:var(--green)}
+.story-author-info span{font-size:.74rem;color:var(--terra)}
+
+/* EMPTY */
+.empty-state{grid-column:1/-1;text-align:center;padding:52px 20px;color:var(--text-light)}
+.empty-state .ei{font-size:2.8rem;margin-bottom:10px}
+.empty-state p{font-size:.94rem;margin-bottom:14px}
+
+/* PHOTO UPLOAD */
+.photo-upload-area{border:2px dashed var(--parchment-dark);border-radius:var(--radius-sm);padding:20px;text-align:center;cursor:pointer;transition:.2s;position:relative;background:var(--white)}
+.photo-upload-area:hover{border-color:var(--green);background:var(--green-pale)}
+.photo-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.photo-preview{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-top:10px;display:none}
+.upload-icon{font-size:1.8rem;margin-bottom:6px}
+.upload-text{font-size:.82rem;color:var(--text-light);font-weight:600}
+.upload-progress{font-size:.78rem;color:var(--green);font-weight:700;margin-top:6px;display:none}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(26,26,26,.65);z-index:2000;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(5px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--parchment);border-radius:var(--radius);padding:32px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;position:relative;animation:mIn .3s ease}
+.modal.wide{max-width:580px}
+@keyframes mIn{from{opacity:0;transform:translateY(28px) scale(.96)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;top:13px;right:13px;background:var(--parchment-dark);border:none;width:30px;height:30px;border-radius:50%;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.modal-close:hover{background:var(--terra);color:#fff}
+.modal-title{font-family:'Fraunces',serif;font-weight:800;font-size:1.4rem;color:var(--green);margin-bottom:4px}
+.modal-sub{font-size:.82rem;color:var(--text-light);margin-bottom:20px}
+.form-group{margin-bottom:15px}
+.form-group label{display:block;font-weight:700;font-size:.81rem;color:var(--green);margin-bottom:5px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 13px;border:1.5px solid var(--parchment-dark);border-radius:var(--radius-sm);font-family:'Nunito',sans-serif;font-size:.88rem;background:#fff;color:var(--text);transition:.2s;outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(45,80,22,.1)}
+.form-group input.err,.form-group textarea.err,.form-group select.err{border-color:#d00;box-shadow:0 0 0 3px rgba(220,0,0,.08)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.submit-btn{width:100%;background:var(--green);color:#fff;border:none;padding:12px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.96rem;cursor:pointer;transition:.2s;margin-top:4px}
+.submit-btn:hover{background:var(--green-light)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed}
+.divider{text-align:center;color:var(--text-light);font-size:.8rem;margin:14px 0;position:relative}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--parchment-dark)}
+.divider::before{left:0}.divider::after{right:0}
+.auth-switch{text-align:center;font-size:.83rem;color:var(--text-mid);margin-top:14px}
+.auth-switch a{color:var(--terra);font-weight:700;cursor:pointer;text-decoration:underline}
+.contact-info-box{background:var(--green-pale);border:1.5px solid var(--green);border-radius:10px;padding:14px;margin-bottom:14px}
+.contact-info-box p{font-size:.82rem;color:var(--green);font-weight:600;margin-bottom:10px}
+
+/* FOOTER */
+footer{background:var(--green);color:rgba(255,255,255,.82);padding:56px 5% 26px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;margin-bottom:32px}
+.footer-brand-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand-text{font-family:'Fraunces',serif;font-weight:800;font-size:1.05rem;color:#fff;line-height:1.1}
+.footer-brand-text span{display:block;font-size:.48rem;font-family:'Nunito',sans-serif;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+.footer-brand p{font-size:.86rem;line-height:1.7;max-width:290px;color:rgba(255,255,255,.62)}
+.footer-col h4{font-family:'Fraunces',serif;font-weight:600;font-size:.95rem;color:#fff;margin-bottom:11px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:7px}
+.footer-col ul li a{color:rgba(255,255,255,.58);text-decoration:none;font-size:.84rem;transition:.2s;cursor:pointer}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-bottom p{font-size:.8rem;color:rgba(255,255,255,.42)}
+
+/* TOAST */
+#otp-toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--green);color:#fff;padding:11px 24px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;z-index:9999;opacity:0;transition:transform .4s ease,opacity .4s ease;box-shadow:0 8px 28px rgba(0,0,0,.22);white-space:nowrap;pointer-events:none}
+#otp-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* CONTACT MODAL */
+.contact-modal-info{background:var(--green-pale);border-radius:10px;padding:16px;margin-bottom:16px}
+.contact-modal-info h4{font-family:'Fraunces',serif;font-size:1rem;color:var(--green);margin-bottom:8px}
+.contact-modal-info p{font-size:.84rem;color:var(--text-mid);margin-bottom:4px}
+
+@media(max-width:768px){
+  nav{padding:0 4%}
+  .nav-links,.nav-cta,.nav-login-btn{display:none}
+  .nav-user.show{display:none}
+  .hamburger{display:flex}
+  nav.menu-open .nav-links{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--parchment);padding:16px 5%;border-bottom:1.5px solid var(--parchment-dark);gap:13px;box-shadow:var(--shadow)}
+  nav.menu-open .nav-cta,nav.menu-open .nav-login-btn{display:block;margin:0 5% 10px}
+  section{padding:58px 4%}
+  .form-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:22px}
+  .states-grid{grid-template-columns:repeat(auto-fill,minmax(128px,1fr))}
+  .section-header-row{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:480px){.hero-btns{flex-direction:column}.modal{padding:20px 15px}}
+
+/* ═══════ STATE DASHBOARD ═══════ */
+.state-dashboard{display:none;margin-top:28px;animation:fadeUp .4s ease both}
+.state-dashboard.open{display:block}
+.sdash-header{background:linear-gradient(135deg,var(--green) 0%,var(--green-light) 100%);border-radius:var(--radius) var(--radius) 0 0;padding:28px 28px 20px;color:#fff;position:relative;overflow:hidden}
+.sdash-header::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;background:rgba(245,200,66,.15);border-radius:50%}
+.sdash-header::after{content:'';position:absolute;right:60px;bottom:-30px;width:100px;height:100px;background:rgba(255,255,255,.06);border-radius:50%}
+.sdash-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sdash-title{font-family:'Fraunces',serif;font-weight:800;font-size:1.6rem;color:#fff}
+.sdash-subtitle{font-size:.84rem;color:rgba(255,255,255,.7);margin-top:2px}
+.sdash-close{background:rgba(255,255,255,.15);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0}
+.sdash-close:hover{background:rgba(255,255,255,.28)}
+/* Category cards */
+.sdash-cats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:0 28px;margin-top:-18px;position:relative;z-index:2}
+.sdash-cat{background:#fff;border-radius:14px;padding:16px 10px 14px;text-align:center;cursor:pointer;transition:.25s;border:2px solid transparent;box-shadow:0 4px 16px rgba(0,0,0,.10)}
+.sdash-cat:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.sdash-cat.active{border-color:var(--terra);background:linear-gradient(135deg,#fff8f4,#fff)}
+.sdash-cat-icon{font-size:1.6rem;margin-bottom:6px}
+.sdash-cat-label{font-size:.72rem;font-weight:800;color:var(--green);display:block;margin-bottom:3px}
+.sdash-cat-count{font-size:.68rem;font-weight:700;color:var(--terra);background:var(--gold-pale);padding:2px 7px;border-radius:50px;display:inline-block}
+/* Trending bar */
+.sdash-trending{background:#fff;border-left:4px solid var(--gold);padding:12px 18px;margin:18px 28px 0;border-radius:0 10px 10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sdash-trending-label{font-size:.72rem;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.sdash-trending-tags{display:flex;gap:7px;flex-wrap:wrap}
+.sdash-trending-tag{background:var(--green-pale);color:var(--green);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:50px;cursor:pointer;transition:.2s}
+.sdash-trending-tag:hover{background:var(--green);color:#fff}
+/* Module panel */
+.sdash-module{display:none;padding:22px 28px 28px;background:#fff;border-radius:0 0 var(--radius) var(--radius);border:1.5px solid var(--parchment-dark);border-top:none}
+.sdash-module.active{display:block}
+/* Module toolbar */
+.mod-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.mod-search{flex:1;min-width:160px;display:flex;align-items:center;gap:8px;background:var(--parchment);border:1.5px solid var(--parchment-dark);border-radius:50px;padding:8px 14px}
+.mod-search input{border:none;background:transparent;font-family:'Nunito',sans-serif;font-size:.84rem;color:var(--text);outline:none;flex:1}
+.mod-filter{background:var(--parchment);border:1.5px solid var(--parchment-dark);border-radius:50px;padding:8px 14px;font-family:'Nunito',sans-serif;font-size:.82rem;color:var(--text-mid);cursor:pointer;outline:none}
+.mod-sort{background:var(--parchment);border:1.5px solid var(--parchment-dark);border-radius:50px;padding:8px 14px;font-family:'Nunito',sans-serif;font-size:.82rem;color:var(--text-mid);cursor:pointer;outline:none}
+.mod-add-btn{background:var(--terra);color:#fff;border:none;padding:9px 18px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:.2s;white-space:nowrap}
+.mod-add-btn:hover{background:var(--terra-light);transform:translateY(-1px)}
+/* Cards grid */
+.mod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.mod-card{background:#fff;border:1.5px solid var(--parchment-dark);border-radius:14px;overflow:hidden;transition:.25s;position:relative}
+.mod-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--green)}
+.mod-card-img{height:150px;background:linear-gradient(135deg,var(--green-pale),var(--gold-pale));display:flex;align-items:center;justify-content:center;font-size:2.4rem;position:relative;overflow:hidden}
+.mod-card-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.mod-card-body{padding:14px}
+.mod-card-cat{display:inline-block;background:var(--gold-pale);color:var(--green);font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:50px;border:1px solid var(--gold);margin-bottom:7px}
+.mod-card-name{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;color:var(--green);margin-bottom:3px}
+.mod-card-meta{font-size:.76rem;color:var(--terra);font-weight:600;margin-bottom:5px}
+.mod-card-desc{font-size:.81rem;color:var(--text-mid);line-height:1.45;margin-bottom:10px}
+/* Card actions */
+.mod-card-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-top:1px solid var(--parchment-dark);padding-top:10px;margin-top:4px}
+.mod-action-btn{background:transparent;border:1.5px solid var(--parchment-dark);color:var(--text-mid);padding:5px 10px;border-radius:50px;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:4px}
+.mod-action-btn:hover{border-color:var(--green);color:var(--green)}
+.mod-action-btn.liked{border-color:var(--terra);color:var(--terra)}
+.mod-action-btn.saved{border-color:var(--gold);color:#b8860b}
+.mod-map-btn{background:var(--green-pale);border:1.5px solid var(--green);color:var(--green);padding:5px 10px;border-radius:50px;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:.2s}
+.mod-map-btn:hover{background:var(--green);color:#fff}
+/* Rating stars */
+.mod-stars{color:var(--gold);font-size:.82rem;letter-spacing:1px;margin-bottom:5px}
+/* Trip status badge */
+.trip-status{display:inline-flex;align-items:center;gap:4px;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:50px}
+.trip-status.open{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+.trip-status.full{background:#fff3e0;color:#e65100;border:1px solid #ffcc80}
+.trip-status.done{background:#f3e5f5;color:#6a1b9a;border:1px solid #ce93d8}
+/* Partner card */
+.partner-mod-card{background:#fff;border:1.5px solid var(--parchment-dark);border-radius:14px;padding:18px;transition:.25s}
+.partner-mod-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--green)}
+.pmc-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--terra));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;font-family:'Fraunces',serif;margin-bottom:10px}
+.pmc-name{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;color:var(--green);margin-bottom:3px}
+.pmc-badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px}
+.pmc-badge{background:var(--green-pale);color:var(--green);font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:50px}
+.pmc-bio{font-size:.81rem;color:var(--text-mid);line-height:1.5;margin-bottom:10px}
+.pmc-actions{display:flex;gap:7px}
+.pmc-req-btn{flex:1;background:var(--green);color:#fff;border:none;padding:8px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:.2s}
+.pmc-req-btn:hover{background:var(--green-light)}
+.pmc-chat-btn{flex:1;background:var(--terra);color:#fff;border:none;padding:8px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:.2s}
+.pmc-chat-btn:hover{background:var(--terra-light)}
+/* Empty module */
+.mod-empty{text-align:center;padding:40px 20px;color:var(--text-light)}
+.mod-empty .me-icon{font-size:2.6rem;margin-bottom:10px}
+.mod-empty p{font-size:.9rem;margin-bottom:14px}
+/* Floating action button cluster */
+.fab-cluster{position:fixed;bottom:28px;right:24px;z-index:900;display:flex;flex-direction:column;gap:9px;align-items:flex-end}
+.fab-main{width:54px;height:54px;background:var(--terra);color:#fff;border:none;border-radius:50%;font-size:1.4rem;cursor:pointer;box-shadow:0 6px 24px rgba(224,123,57,.45);transition:.2s;display:flex;align-items:center;justify-content:center}
+.fab-main:hover{background:var(--terra-light);transform:scale(1.08)}
+.fab-items{display:none;flex-direction:column;gap:8px;align-items:flex-end}
+.fab-cluster.open .fab-items{display:flex}
+.fab-item{display:flex;align-items:center;gap:9px;cursor:pointer}
+.fab-item-label{background:var(--green);color:#fff;font-size:.75rem;font-weight:700;padding:5px 12px;border-radius:50px;white-space:nowrap;box-shadow:var(--shadow)}
+.fab-item-btn{width:40px;height:40px;border-radius:50%;border:none;font-size:1rem;cursor:pointer;box-shadow:var(--shadow);transition:.2s;display:flex;align-items:center;justify-content:center}
+.fab-item-btn:hover{transform:scale(1.1)}
+/* Comments */
+.comments-section{margin-top:10px;border-top:1px solid var(--parchment-dark);padding-top:10px}
+.comment-input-row{display:flex;gap:7px;margin-bottom:8px}
+.comment-input-row input{flex:1;border:1.5px solid var(--parchment-dark);border-radius:50px;padding:7px 13px;font-family:'Nunito',sans-serif;font-size:.8rem;outline:none}
+.comment-input-row input:focus{border-color:var(--green)}
+.comment-input-row button{background:var(--green);color:#fff;border:none;padding:7px 14px;border-radius:50px;font-size:.78rem;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer}
+.comment-item{font-size:.78rem;color:var(--text-mid);padding:4px 0;border-bottom:1px solid var(--parchment-dark)}
+.comment-item strong{color:var(--green)}
+/* Trending section */
+.sdash-trending-section{background:linear-gradient(135deg,var(--gold-pale),#fff);border:1.5px solid var(--gold);border-radius:var(--radius);padding:22px 24px;margin:18px 0 0}
+.sdash-trending-title{font-family:'Fraunces',serif;font-weight:800;font-size:1.1rem;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.trending-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.trending-chip{background:#fff;border:1.5px solid var(--parchment-dark);border-radius:10px;padding:10px 12px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:9px}
+.trending-chip:hover{border-color:var(--terra);transform:translateY(-2px);box-shadow:var(--shadow)}
+.trending-chip-icon{font-size:1.3rem}
+.trending-chip-text{font-size:.78rem;font-weight:700;color:var(--green);line-height:1.3}
+.trending-chip-sub{font-size:.66rem;color:var(--text-light)}
+@media(max-width:768px){
+  .sdash-cats{grid-template-columns:repeat(3,1fr)}
+  .sdash-module,.sdash-cats,.sdash-header,.sdash-trending{padding-left:14px;padding-right:14px}
+  .mod-toolbar{flex-direction:column;align-items:stretch}
+  .mod-search{min-width:0}
+}
+@media(max-width:480px){
+  .sdash-cats{grid-template-columns:repeat(2,1fr)}
+  .sdash-title{font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-icon">🧭</div>
+    <div class="nav-logo-text">Oru Trip Pokam<span>Shall We Go on a Trip?</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#states">States</a></li>
+    <li><a href="#gems">Hidden Gems</a></li>
+    <li><a href="#tourist-spots">Tourist Spots</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#trips">Trips</a></li>
+    <li><a href="#stories">Stories</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-user" id="navUser">
+      <div class="nav-user-avatar" id="navAvatar">A</div>
+      <span class="nav-user-name" id="navUserName">User</span>
+      <button class="nav-logout" onclick="logout()">Logout</button>
+    </div>
+    <button class="nav-login-btn" id="navLoginBtn" onclick="openModal('login')">Login</button>
+    <button class="nav-cta" onclick="openModal('gem')">+ Add a Place</button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-map-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🌏 Community Travel Platform</div>
+    <h1 class="hero-title">Discover <em>Hidden Places.</em><br>Explore India Together.</h1>
+    <p class="hero-sub">Connect with travelers across India, uncover secret gems, share your journeys, and find the perfect travel companion for your next adventure.</p>
+    <div class="hero-btns">
+      <a href="#gems" class="btn-primary">🗺️ Explore Destinations</a>
+      <a href="#partners" class="btn-outline">🤝 Find Travel Partners</a>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag">🌴 Kerala</span>
+      <span class="hero-tag">🏔️ Ladakh</span>
+      <span class="hero-tag">🏜️ Rajasthan</span>
+      <span class="hero-tag">🌊 Goa</span>
+      <span class="hero-tag">🍵 Coorg</span>
+      <span class="hero-tag">❄️ Spiti</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-header reveal">
+    <div class="section-label">What You Can Do</div>
+    <h2 class="section-title">Everything a Traveler Needs</h2>
+    <p class="section-sub">A community-first platform where every traveler contributes and discovers together.</p>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon">🗺️</div>
+      <h3>Discover Destinations</h3>
+      <p>Explore hidden gems and tourist spots contributed by fellow travelers across every Indian state.</p>
+      <button class="add-btn" onclick="openModal('gem')">+ Add a Destination</button>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤝</div>
+      <h3>Find Travel Partners</h3>
+      <p>Connect with like-minded travelers. Contact trip creators and join their journeys across India.</p>
+      <button class="add-btn" onclick="openModal('partner')">+ Add Your Profile</button>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📸</div>
+      <h3>Share with Photos</h3>
+      <p>Upload your travel photos with stories. Show the world what hidden places look like in real life.</p>
+      <button class="add-btn" onclick="openModal('story')">+ Share a Story</button>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <h3>Create Trip Plans</h3>
+      <p>Plan your trips, share location links, add contact info, and invite fellow travelers to join.</p>
+      <button class="add-btn" onclick="openModal('trip')">+ Create a Trip</button>
+    </div>
+  </div>
+</section>
+
+<!-- STATES -->
+<section id="states">
+  <div class="section-header reveal">
+    <div class="section-label">All 36 States & UTs</div>
+    <h2 class="section-title">Explore Every Corner of India</h2>
+    <p class="section-sub">Click any state to open a full community dashboard — Tourist Spots, Hidden Gems, Travel Partners, Trip Plans & Stories all in one place.</p>
+  </div>
+  <div class="states-grid reveal" id="statesGrid"></div>
+  <!-- STATE DASHBOARD -->
+  <div class="state-dashboard" id="stateDashboard">
+    <!-- Header -->
+    <div class="sdash-header">
+      <div class="sdash-title-row">
+        <div>
+          <div class="sdash-title" id="sdashTitle">🌴 Kerala</div>
+          <div class="sdash-subtitle">Backwaters & Spice · Explore, Share, Connect</div>
+        </div>
+        <button class="sdash-close" onclick="closeStatePanel()">✕</button>
+      </div>
+    </div>
+    <!-- Category cards -->
+    <div class="sdash-cats">
+      <div class="sdash-cat active" onclick="openModule('spots')" id="catSpots">
+        <div class="sdash-cat-icon">📍</div>
+        <span class="sdash-cat-label">Tourist Spots</span>
+        <span class="sdash-cat-count" id="cntSpots">0</span>
+      </div>
+      <div class="sdash-cat" onclick="openModule('gems')" id="catGems">
+        <div class="sdash-cat-icon">💎</div>
+        <span class="sdash-cat-label">Hidden Gems</span>
+        <span class="sdash-cat-count" id="cntGems">0</span>
+      </div>
+      <div class="sdash-cat" onclick="openModule('partners')" id="catPartners">
+        <div class="sdash-cat-icon">🤝</div>
+        <span class="sdash-cat-label">Partners</span>
+        <span class="sdash-cat-count" id="cntPartners">0</span>
+      </div>
+      <div class="sdash-cat" onclick="openModule('trips')" id="catTrips">
+        <div class="sdash-cat-icon">🗺️</div>
+        <span class="sdash-cat-label">Trip Plans</span>
+        <span class="sdash-cat-count" id="cntTrips">0</span>
+      </div>
+      <div class="sdash-cat" onclick="openModule('stories')" id="catStories">
+        <div class="sdash-cat-icon">📖</div>
+        <span class="sdash-cat-label">Stories</span>
+        <span class="sdash-cat-count" id="cntStories">0</span>
+      </div>
+    </div>
+    <!-- Trending bar -->
+    <div class="sdash-trending">
+      <span class="sdash-trending-label">🔥 Trending</span>
+      <div class="sdash-trending-tags" id="trendingTags">
+        <span class="sdash-trending-tag" onclick="openModule('spots')">Munnar</span>
+        <span class="sdash-trending-tag" onclick="openModule('spots')">Alleppey Backwaters</span>
+        <span class="sdash-trending-tag" onclick="openModule('gems')">Varkala Cliffs</span>
+        <span class="sdash-trending-tag" onclick="openModule('trips')">Wayanad Trip</span>
+        <span class="sdash-trending-tag" onclick="openModule('stories')">Houseboat Stories</span>
+      </div>
+    </div>
+    <!-- ── TOURIST SPOTS MODULE ── -->
+    <div class="sdash-module active" id="modSpots">
+      <div class="mod-toolbar">
+        <div class="mod-search"><span>🔍</span><input type="text" id="searchSpots" placeholder="Search tourist spots…" oninput="filterModule('spots')"/></div>
+        <select class="mod-filter" id="filterSpotsCat" onchange="filterModule('spots')"><option value="">All Categories</option><option>Nature</option><option>Heritage</option><option>Adventure</option><option>Beach</option><option>Mountains</option><option>Temple</option><option>Waterfall</option><option>Food</option><option>Offbeat</option></select>
+        <select class="mod-sort" id="sortSpots" onchange="filterModule('spots')"><option value="new">Newest</option><option value="liked">Most Liked</option></select>
+        <button class="mod-add-btn" onclick="openModal('stateGem')">+ Add Spot</button>
+      </div>
+      <div class="mod-grid" id="modSpotsGrid"></div>
+    </div>
+    <!-- ── HIDDEN GEMS MODULE ── -->
+    <div class="sdash-module" id="modGems">
+      <div class="mod-toolbar">
+        <div class="mod-search"><span>🔍</span><input type="text" id="searchGems" placeholder="Search hidden gems…" oninput="filterModule('gems')"/></div>
+        <select class="mod-filter" id="filterGemsCat" onchange="filterModule('gems')"><option value="">All Categories</option><option>Nature</option><option>Heritage</option><option>Adventure</option><option>Beach</option><option>Mountains</option><option>Food</option><option>Offbeat</option></select>
+        <select class="mod-sort" id="sortGems" onchange="filterModule('gems')"><option value="new">Newest</option><option value="liked">Most Liked</option></select>
+        <button class="mod-add-btn" onclick="openModal('gem')">+ Add Gem</button>
+      </div>
+      <div class="mod-grid" id="modGemsGrid"></div>
+    </div>
+    <!-- ── TRAVEL PARTNERS MODULE ── -->
+    <div class="sdash-module" id="modPartners">
+      <div class="mod-toolbar">
+        <div class="mod-search"><span>🔍</span><input type="text" id="searchPartners" placeholder="Search travelers…" oninput="filterModule('partners')"/></div>
+        <select class="mod-filter" id="filterPartnersStyle" onchange="filterModule('partners')"><option value="">All Styles</option><option>Solo</option><option>Group</option><option>Family</option><option>Adventure</option><option>Budget</option><option>Luxury</option></select>
+        <select class="mod-sort" id="sortPartners" onchange="filterModule('partners')"><option value="new">Newest</option><option value="date">By Date</option></select>
+        <button class="mod-add-btn" onclick="openModal('partner')">+ Add Profile</button>
+      </div>
+      <div class="mod-grid" id="modPartnersGrid"></div>
+    </div>
+    <!-- ── TRIP PLANS MODULE ── -->
+    <div class="sdash-module" id="modTrips">
+      <div class="mod-toolbar">
+        <div class="mod-search"><span>🔍</span><input type="text" id="searchTrips" placeholder="Search trip plans…" oninput="filterModule('trips')"/></div>
+        <select class="mod-filter" id="filterTripsStatus" onchange="filterModule('trips')"><option value="">All Status</option><option value="yes">Open</option><option value="no">Closed</option></select>
+        <select class="mod-sort" id="sortTrips" onchange="filterModule('trips')"><option value="new">Newest</option><option value="date">By Start Date</option></select>
+        <button class="mod-add-btn" onclick="openModal('trip')">+ Create Trip</button>
+      </div>
+      <div class="mod-grid" id="modTripsGrid"></div>
+    </div>
+    <!-- ── STORIES MODULE ── -->
+    <div class="sdash-module" id="modStories">
+      <div class="mod-toolbar">
+        <div class="mod-search"><span>🔍</span><input type="text" id="searchStories" placeholder="Search stories…" oninput="filterModule('stories')"/></div>
+        <select class="mod-sort" id="sortStories" onchange="filterModule('stories')"><option value="new">Newest</option><option value="liked">Most Liked</option></select>
+        <button class="mod-add-btn" onclick="openModal('story')">+ Share Story</button>
+      </div>
+      <div class="mod-grid" id="modStoriesGrid"></div>
+    </div>
+    <!-- Trending section -->
+    <div class="sdash-trending-section" id="trendingSection">
+      <div class="sdash-trending-title">🔥 Trending in <span id="trendingStateName">this state</span></div>
+      <div class="trending-grid" id="trendingGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- HIDDEN GEMS -->
+<section id="gems">
+  <div class="section-header-row reveal">
+    <div><div class="section-label">Community Contributed</div><h2 class="section-title">Hidden Gems</h2></div>
+    <button class="add-btn" onclick="openModal('gem')">+ Add a Hidden Gem</button>
+  </div>
+  <div class="gems-grid reveal" id="gemsGrid"></div>
+</section>
+
+<!-- ALL INDIA TOURIST SPOTS -->
+<section id="tourist-spots" style="background:var(--green-pale)">
+  <div class="section-header reveal">
+    <div class="section-label">📍 Across India</div>
+    <h2 class="section-title">All India Tourist Spots</h2>
+    <p class="section-sub">Curated destinations from every corner of incredible India.</p>
+  </div>
+  <div id="places-container" class="gems-grid reveal"></div>
+  <div id="places-loading" style="text-align:center;padding:40px;color:var(--text-light);font-size:.95rem">⏳ Loading tourist spots…</div>
+  <div id="places-error" style="display:none;text-align:center;padding:40px;color:#c0392b;font-size:.9rem"></div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="section-header-row reveal">
+    <div><div class="section-label">Find Your Tribe</div><h2 class="section-title">Travel Partners</h2></div>
+    <button class="add-btn" onclick="openModal('partner')">+ Add Your Profile</button>
+  </div>
+  <div class="partners-grid reveal" id="partnersGrid"></div>
+</section>
+
+<!-- TRIPS -->
+<section id="trips">
+  <div class="section-header-row reveal">
+    <div><div class="section-label">Plan Together</div><h2 class="section-title">Trip Plans</h2></div>
+    <button class="add-btn" onclick="openModal('trip')">+ Create a Trip Plan</button>
+  </div>
+  <div class="trips-grid reveal" id="tripsGrid"></div>
+</section>
+
+<!-- STORIES -->
+<section id="stories">
+  <div class="section-header-row reveal">
+    <div><div class="section-label">Every Road Has a Story</div><h2 class="section-title">Travel Stories</h2></div>
+    <button class="add-btn" onclick="openModal('story')">+ Share Your Story</button>
+  </div>
+  <div class="stories-grid reveal" id="storiesGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <div class="nav-logo-icon">🧭</div>
+        <div class="footer-brand-text">Oru Trip Pokam<span>Shall We Go on a Trip?</span></div>
+      </div>
+      <p>A community-driven travel platform connecting travelers across India. Discover hidden places, find travel partners, and explore India together.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#states">Indian States</a></li>
+        <li><a href="#gems">Hidden Gems</a></li>
+        <li><a href="#trips">Trip Plans</a></li>
+        <li><a href="#partners">Travel Partners</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contribute</h4>
+      <ul>
+        <li><a onclick="openModal('gem')">Add a Hidden Gem</a></li>
+        <li><a onclick="openModal('partner')">Add Your Profile</a></li>
+        <li><a onclick="openModal('trip')">Create a Trip Plan</a></li>
+        <li><a onclick="openModal('story')">Share a Story</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Oru Trip Pokam.</p>
+    <p>"Discover Hidden Places. Find Travel Partners. Explore India Together."</p>
+  </div>
+</footer>
+
+<div id="otp-toast"></div>
+
+<!-- FLOATING ACTION BUTTONS -->
+<div class="fab-cluster" id="fabCluster">
+  <div class="fab-items">
+    <div class="fab-item" onclick="openModal('story');toggleFab()">
+      <span class="fab-item-label">Share Story</span>
+      <button class="fab-item-btn" style="background:#9c27b0;color:#fff">📖</button>
+    </div>
+    <div class="fab-item" onclick="openModal('trip');toggleFab()">
+      <span class="fab-item-label">Create Trip Plan</span>
+      <button class="fab-item-btn" style="background:var(--green);color:#fff">🗺️</button>
+    </div>
+    <div class="fab-item" onclick="openModal('partner');toggleFab()">
+      <span class="fab-item-label">Add Travel Partner</span>
+      <button class="fab-item-btn" style="background:#0288d1;color:#fff">🤝</button>
+    </div>
+    <div class="fab-item" onclick="openModal('gem');toggleFab()">
+      <span class="fab-item-label">Add Hidden Gem</span>
+      <button class="fab-item-btn" style="background:var(--gold);color:var(--green)">💎</button>
+    </div>
+    <div class="fab-item" onclick="openModal('stateGem');toggleFab()">
+      <span class="fab-item-label">Add Tourist Spot</span>
+      <button class="fab-item-btn" style="background:var(--terra);color:#fff">📍</button>
+    </div>
+  </div>
+  <button class="fab-main" onclick="toggleFab()" id="fabBtn">＋</button>
+</div>
+
+<!-- ═══════════════ MODALS ═══════════════ -->
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login')">✕</button>
+    <div id="loginView">
+      <h2 class="modal-title">👋 Welcome Back</h2>
+      <p class="modal-sub">Login to your account</p>
+      <div class="form-group"><label>Email *</label><input type="email" id="li-email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Password *</label><input type="password" id="li-pass" placeholder="Your password"/></div>
+      <button class="submit-btn" onclick="doLogin()">Login</button>
+      <div class="auth-switch"><a onclick="showView('forgotView')">Forgot Password?</a></div>
+      <div class="divider">or</div>
+      <div class="auth-switch">Don't have an account? <a onclick="showView('signupView')">Sign Up</a></div>
+    </div>
+    <div id="signupView" style="display:none">
+      <h2 class="modal-title">🌏 Join the Community</h2>
+      <p class="modal-sub">Create your free account</p>
+      <div class="form-row">
+        <div class="form-group"><label>First Name *</label><input type="text" id="su-fname" placeholder="First name"/></div>
+        <div class="form-group"><label>Last Name *</label><input type="text" id="su-lname" placeholder="Last name"/></div>
+      </div>
+      <div class="form-group"><label>Email *</label><input type="email" id="su-email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Password *</label><input type="password" id="su-pass" placeholder="Min 6 characters"/></div>
+      <div class="form-group"><label>Confirm Password *</label><input type="password" id="su-pass2" placeholder="Repeat password"/></div>
+      <button class="submit-btn" onclick="doSignup()">Create Account</button>
+      <div class="auth-switch">Already have an account? <a onclick="showView('loginView')">Login</a></div>
+    </div>
+    <div id="forgotView" style="display:none">
+      <h2 class="modal-title">🔑 Reset Password</h2>
+      <p class="modal-sub">Enter your email to reset your password</p>
+      <div class="form-group"><label>Email *</label><input type="email" id="fp-email" placeholder="your@email.com"/></div>
+      <button class="submit-btn" onclick="doForgot()">Send Reset Link</button>
+      <div class="auth-switch"><a onclick="showView('loginView')">← Back to Login</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- GEM MODAL -->
+<div class="modal-overlay" id="gemModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('gem')">✕</button>
+    <h2 class="modal-title">🌟 Add a Hidden Gem</h2>
+    <p class="modal-sub">Share a secret place — with photos!</p>
+    <div class="form-group"><label>Place Name *</label><input type="text" id="gm-name" placeholder="e.g. Kolukkumalai Tea Estate"/></div>
+    <div class="form-row">
+      <div class="form-group"><label>State *</label><select id="gm-state"><option value="">Select State</option></select></div>
+      <div class="form-group"><label>Category *</label><select id="gm-cat"><option value="">Select</option><option>Nature</option><option>Heritage</option><option>Adventure</option><option>Food</option><option>Offbeat</option><option>Beach</option><option>Mountains</option></select></div>
+    </div>
+    <div class="form-group"><label>Description *</label><textarea id="gm-desc" placeholder="Tell us about this hidden gem..."></textarea></div>
+    <div class="form-group"><label>📍 Google Maps Link</label><input type="url" id="gm-maplink" placeholder="Paste Google Maps link for exact location"/></div>
+    <div class="form-group">
+      <label>Upload Photo</label>
+      <div class="photo-upload-area" id="gemUploadArea">
+        <input type="file" id="gm-photo-file" accept="image/*" onchange="previewPhoto(this,'gemPreview')"/>
+        <div class="upload-icon">📷</div>
+        <div class="upload-text">Click to upload a photo from your device</div>
+        <div class="upload-progress" id="gemUploadProgress">⏳ Processing...</div>
+      </div>
+      <img id="gemPreview" class="photo-preview" alt="Preview"/>
+    </div>
+    <div class="form-group"><label>Your Name *</label><input type="text" id="gm-who" placeholder="Your name"/></div>
+    <button class="submit-btn" id="gemSubmitBtn" onclick="submitGem()">🌟 Add Hidden Gem</button>
+  </div>
+</div>
+
+<!-- PARTNER MODAL -->
+<div class="modal-overlay" id="partnerModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('partner')">✕</button>
+    <h2 class="modal-title">🤝 Add Your Profile</h2>
+    <p class="modal-sub">Connect with fellow travelers</p>
+    <div class="form-group"><label>Your Name *</label><input type="text" id="pm-name" placeholder="Your full name"/></div>
+    <div class="form-row">
+      <div class="form-group"><label>Travel Style *</label><select id="pm-style"><option value="">Select</option><option>Solo</option><option>Group</option><option>Family</option><option>Adventure</option><option>Budget</option><option>Luxury</option></select></div>
+      <div class="form-group"><label>Travel Date *</label><input type="date" id="pm-date"/></div>
+    </div>
+    <div class="form-group"><label>Upcoming Destination *</label><input type="text" id="pm-dest" placeholder="e.g. Manali, Himachal Pradesh"/></div>
+    <div class="form-group"><label>Short Bio *</label><textarea id="pm-bio" placeholder="Tell other travelers about yourself..."></textarea></div>
+    <div class="form-group"><label>Contact (Email / Phone / Instagram) *</label><input type="text" id="pm-contact" placeholder="e.g. yourname@email.com or @instagram"/></div>
+    <button class="submit-btn" onclick="submitPartner()">🤝 Add My Profile</button>
+  </div>
+</div>
+
+<!-- TRIP MODAL -->
+<div class="modal-overlay" id="tripModal">
+  <div class="modal wide">
+    <button class="modal-close" onclick="closeModal('trip')">✕</button>
+    <h2 class="modal-title">🗺️ Create a Trip Plan</h2>
+    <p class="modal-sub">Share your trip and find travel partners</p>
+    <div class="form-group"><label>Trip Name *</label><input type="text" id="tm-name" placeholder="e.g. Rajasthan Desert Road Trip"/></div>
+    <div class="form-group"><label>Destination *</label><input type="text" id="tm-dest" placeholder="Where are you going?"/></div>
+    <div class="form-row">
+      <div class="form-group"><label>Start Date *</label><input type="date" id="tm-start"/></div>
+      <div class="form-group"><label>End Date *</label><input type="date" id="tm-end"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>No. of Travelers *</label><input type="number" id="tm-num" min="1" placeholder="4"/></div>
+      <div class="form-group"><label>Open to Partners? *</label><select id="tm-open"><option value="">Select</option><option value="yes">Yes, welcome!</option><option value="no">No, closed</option></select></div>
+    </div>
+    <div class="form-group"><label>Description *</label><textarea id="tm-desc" placeholder="Share itinerary, budget, vibe..."></textarea></div>
+    <div class="form-group"><label>📍 Location / Map Link</label><input type="url" id="tm-maplink" placeholder="Paste Google Maps or any location link"/></div>
+    <div class="contact-info-box">
+      <p>📬 Your Contact Information (visible to interested travelers)</p>
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0"><label>Your Name *</label><input type="text" id="tm-who" placeholder="Your name"/></div>
+        <div class="form-group" style="margin-bottom:0"><label>Phone / WhatsApp</label><input type="text" id="tm-phone" placeholder="+91 XXXXX XXXXX"/></div>
+      </div>
+      <div class="form-group" style="margin-top:12px;margin-bottom:0"><label>Email</label><input type="email" id="tm-email" placeholder="your@email.com"/></div>
+    </div>
+    <button class="submit-btn" onclick="submitTrip()">🗺️ Create Trip Plan</button>
+  </div>
+</div>
+
+<!-- STORY MODAL -->
+<div class="modal-overlay" id="storyModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('story')">✕</button>
+    <h2 class="modal-title">📸 Share Your Story</h2>
+    <p class="modal-sub">Inspire travelers — upload a photo from your journey!</p>
+    <div class="form-row">
+      <div class="form-group"><label>Your Name *</label><input type="text" id="sm-name" placeholder="Your name"/></div>
+      <div class="form-group"><label>Place Visited *</label><input type="text" id="sm-place" placeholder="e.g. Spiti Valley"/></div>
+    </div>
+    <div class="form-group">
+      <label>Upload Travel Photo</label>
+      <div class="photo-upload-area" id="storyUploadArea">
+        <input type="file" id="sm-photo-file" accept="image/*" onchange="previewPhoto(this,'storyPreview')"/>
+        <div class="upload-icon">🌄</div>
+        <div class="upload-text">Upload your travel photo</div>
+        <div class="upload-progress" id="storyUploadProgress">⏳ Processing...</div>
+      </div>
+      <img id="storyPreview" class="photo-preview" alt="Preview"/>
+    </div>
+    <div class="form-group"><label>Your Story *</label><textarea id="sm-story" placeholder="Tell us about your experience..." style="min-height:100px"></textarea></div>
+    <div class="form-group"><label>Travel Tip (optional)</label><input type="text" id="sm-tip" placeholder="One useful tip for other travelers..."/></div>
+    <button class="submit-btn" id="storySubmitBtn" onclick="submitStory()">📸 Share My Story</button>
+  </div>
+</div>
+
+<!-- STATE SPOT MODAL -->
+<div class="modal-overlay" id="stateGemModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('stateGem')">✕</button>
+    <h2 class="modal-title" id="sgTitle">+ Add Tourist Spot</h2>
+    <p class="modal-sub">Share a spot with photos, location & travel info</p>
+    <div class="form-group"><label>Spot Name *</label><input type="text" id="sg-name" placeholder="Name of the place"/></div>
+    <div class="form-row">
+      <div class="form-group"><label>Category *</label><select id="sg-cat"><option value="">Select</option><option>Nature</option><option>Heritage</option><option>Adventure</option><option>Food</option><option>Offbeat</option><option>Beach</option><option>Mountains</option><option>Temple</option><option>Waterfall</option></select></div>
+      <div class="form-group"><label>Location / Area *</label><input type="text" id="sg-loc" placeholder="e.g. 15km from Mysore"/></div>
+    </div>
+    <div class="form-group"><label>Description *</label><textarea id="sg-desc" placeholder="Describe this tourist spot..."></textarea></div>
+    <div class="form-group"><label>Travel Information</label><input type="text" id="sg-travel" placeholder="Best time to visit, how to reach, entry fee..."/></div>
+    <div class="form-group"><label>📍 Google Maps Link</label><input type="url" id="sg-maplink" placeholder="Paste Google Maps link for exact location"/></div>
+    <div class="form-group">
+      <label>Upload Photo</label>
+      <div class="photo-upload-area" id="sgUploadArea">
+        <input type="file" id="sg-photo-file" accept="image/*" onchange="previewPhoto(this,'sgPreview')"/>
+        <div class="upload-icon">📷</div>
+        <div class="upload-text">Upload a photo of this spot</div>
+        <div class="upload-progress" id="sgUploadProgress">⏳ Processing...</div>
+      </div>
+      <img id="sgPreview" class="photo-preview" alt="Preview"/>
+    </div>
+    <div class="form-group"><label>Your Name *</label><input type="text" id="sg-who" placeholder="Your name"/></div>
+    <button class="submit-btn" id="sgSubmitBtn" onclick="submitStateSpot()">🌟 Add Tourist Spot</button>
+  </div>
+</div>
+
+<!-- CONTACT TRIP MODAL -->
+<div class="modal-overlay" id="contactTripModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('contactTrip')">✕</button>
+    <h2 class="modal-title">✉️ Contact as Travel Partner</h2>
+    <p class="modal-sub">Send a message to the trip organiser</p>
+    <div class="contact-modal-info" id="contactTripInfo"></div>
+    <div class="form-group"><label>Your Name *</label><input type="text" id="ct-name" placeholder="Your name"/></div>
+    <div class="form-group"><label>Your Contact *</label><input type="text" id="ct-contact" placeholder="Email or phone"/></div>
+    <div class="form-group"><label>Message *</label><textarea id="ct-msg" placeholder="Introduce yourself and why you'd like to join this trip..."></textarea></div>
+    <button class="submit-btn" onclick="submitContactTrip()">✉️ Send Message</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js';
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js';
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  sendPasswordResetEmail, signOut, onAuthStateChanged, updateProfile
+} from 'https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js';
+
+// ═══════ FIREBASE CONFIG ═══════
+const firebaseConfig = {
+  apiKey:            "AIzaSyBhmrmiINEvKI2lIrKKgvCw41v5ru2xC6Y",
+  authDomain:        "oru-trip-pokam-undo.firebaseapp.com",
+  projectId:         "oru-trip-pokam-undo",
+  storageBucket:     "oru-trip-pokam-undo.firebasestorage.app",
+  messagingSenderId: "635939061786",
+  appId:             "1:635939061786:web:8ce57c77e91fd2927051a3",
+  measurementId:     "G-8ZMY45FWEQ"
+};
+const app       = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth      = getAuth(app);
+
+// Keep currentUser in sync with Firebase
+let currentUser = null;
+let listenersStarted = false;
+onAuthStateChanged(auth, user => {
+  currentUser = user;
+  updateNavUser();
+  if(!listenersStarted){ listenersStarted=true; startListeners(); }
+});
+
+// ═══════ CLOUDINARY CONFIG ═══════
+// ⚠️ REPLACE THESE WITH YOUR CLOUDINARY VALUES:
+const CLOUDINARY_CLOUD_NAME  = 'do7f7pvbc';       // e.g. 'dxyz1abc2'
+const CLOUDINARY_UPLOAD_PRESET = 'orutrip_unsigned'; // e.g. 'orutrip_unsigned'
+
+async function uploadToCloudinary(file, progressId) {
+  if (!file) return '';
+  const prog = document.getElementById(progressId);
+  if (prog) { prog.style.display = 'block'; prog.textContent = '⏳ Uploading photo...'; }
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+  formData.append('folder', 'orutrippokam');
+  try {
+    const res  = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, { method:'POST', body:formData });
+    const data = await res.json();
+    if (prog) prog.style.display = 'none';
+    if (data.secure_url) return data.secure_url;
+    console.error('Cloudinary error:', data);
+    toast('⚠️ Photo upload failed. Saving without photo.');
+    return '';
+  } catch (err) {
+    if (prog) prog.style.display = 'none';
+    console.error('Upload error:', err);
+    toast('⚠️ Photo upload failed. Saving without photo.');
+    return '';
+  }
+}
+
+// ═══════ FIRESTORE ═══════
+import {
+  getFirestore, collection, addDoc, deleteDoc, doc,
+  onSnapshot, query, orderBy, serverTimestamp
+} from 'https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js';
+
+const db = getFirestore(app);
+
+// ═══════ DATA ═══════
+const STATES=[
+  {n:'Andhra Pradesh',e:'🌶️',t:'Temples & Spice'},{n:'Arunachal Pradesh',e:'🏔️',t:'Frontier Peaks'},
+  {n:'Assam',e:'🍵',t:'Tea Gardens'},{n:'Bihar',e:'🏛️',t:'Ancient Heritage'},
+  {n:'Chhattisgarh',e:'🌿',t:'Tribal Culture'},{n:'Goa',e:'🏖️',t:'Beaches & Fiestas'},
+  {n:'Gujarat',e:'🦁',t:'Lions & Salt Flats'},{n:'Haryana',e:'🌾',t:'Golden Harvests'},
+  {n:'Himachal Pradesh',e:'❄️',t:'Snow Peaks'},{n:'Jharkhand',e:'🌊',t:'Waterfalls & Forests'},
+  {n:'Karnataka',e:'🏯',t:'Palaces & Coffee'},{n:'Kerala',e:'🌴',t:'Backwaters & Spice'},
+  {n:'Madhya Pradesh',e:'🐯',t:'Tigers & Temples'},{n:'Maharashtra',e:'🏙️',t:'Forts & Beaches'},
+  {n:'Manipur',e:'🎭',t:'Arts & Lakes'},{n:'Meghalaya',e:'☁️',t:'Living Root Bridges'},
+  {n:'Mizoram',e:'🦋',t:'Blue Mountains'},{n:'Nagaland',e:'🪘',t:'Tribal Festivals'},
+  {n:'Odisha',e:'🛕',t:'Temples & Tribes'},{n:'Punjab',e:'🌾',t:'Land of Five Rivers'},
+  {n:'Rajasthan',e:'🏜️',t:'Deserts & Forts'},{n:'Sikkim',e:'🏔️',t:'Glaciers & Monks'},
+  {n:'Tamil Nadu',e:'🛕',t:'Dravidian Temples'},{n:'Telangana',e:'💎',t:'Kohinoor Land'},
+  {n:'Tripura',e:'🌺',t:'Bamboo & Palaces'},{n:'Uttar Pradesh',e:'🕌',t:'Mughal Splendour'},
+  {n:'Uttarakhand',e:'🙏',t:'Dev Bhoomi'},{n:'West Bengal',e:'🎨',t:'Culture & Sweets'},
+  {n:'Delhi',e:'🏛️',t:'Capital Stories'},{n:'Jammu & Kashmir',e:'🏔️',t:'Heaven on Earth'},
+  {n:'Ladakh',e:'🐪',t:'High Altitude Desert'},{n:'Puducherry',e:'🇫🇷',t:'French Quarter'},
+  {n:'Chandigarh',e:'🌹',t:'City Beautiful'},{n:'Andaman & Nicobar',e:'🐠',t:'Island Paradise'},
+  {n:'Lakshadweep',e:'🐬',t:'Coral Atolls'},{n:'Dadra & Nagar Haveli',e:'🌿',t:'Tribal Heartland'},
+];
+
+// In-memory caches filled by Firestore real-time listeners
+let gems=[], partners=[], trips=[], stories=[], spots=[];
+
+// Pending photo files
+let pendingPhotos = {};
+
+// ═══════ FIRESTORE HELPERS ═══════
+async function fsAdd(col, data) {
+  return addDoc(collection(db, col), {
+    ...data,
+    uid: currentUser ? currentUser.uid : null,
+    createdAt: serverTimestamp()
+  });
+}
+
+async function fsDel(col, id) {
+  await deleteDoc(doc(db, col, id));
+}
+
+// ═══════ REAL-TIME LISTENERS ═══════
+function refreshDashboard(){
+  if(!currentStateName) return;
+  updateCounters();
+  renderTrending();
+  renderModule(currentModule);
+}
+
+function startListeners() {
+  onSnapshot(query(collection(db,'gems'), orderBy('createdAt','desc')), snap => {
+    gems = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderGems(); refreshDashboard();
+  });
+  onSnapshot(query(collection(db,'partners'), orderBy('createdAt','desc')), snap => {
+    partners = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderPartners(); refreshDashboard();
+  });
+  onSnapshot(query(collection(db,'trips'), orderBy('createdAt','desc')), snap => {
+    trips = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderTrips(); refreshDashboard();
+  });
+  onSnapshot(query(collection(db,'stories'), orderBy('createdAt','desc')), snap => {
+    stories = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderStories(); refreshDashboard();
+  });
+  onSnapshot(query(collection(db,'spots'), orderBy('createdAt','desc')), snap => {
+    spots = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderStates(); refreshDashboard();
+  });
+}
+
+// ═══════ FIREBASE AUTH FUNCTIONS ═══════
+function showView(id){['loginView','signupView','forgotView'].forEach(vid=>document.getElementById(vid).style.display='none');document.getElementById(id).style.display='block'}
+
+async function doLogin(){
+  const email=v('li-email'),pass=v('li-pass');
+  if(!email||!pass){toast('⚠️ Please fill in all fields');return}
+  const btn=document.querySelector('#loginView .submit-btn');
+  btn.disabled=true;btn.textContent='⏳ Logging in...';
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    closeModal('login');reset(['li-email','li-pass']);
+    toast(`🎉 Welcome back!`);
+  } catch(err){
+    toast('❌ '+(err.code==='auth/invalid-credential'?'Invalid email or password':err.message));
+  } finally { btn.disabled=false;btn.textContent='Login'; }
+}
+
+async function doSignup(){
+  const fname=v('su-fname'),lname=v('su-lname'),email=v('su-email'),pass=v('su-pass'),pass2=v('su-pass2');
+  if(!fname||!lname||!email||!pass||!pass2){toast('⚠️ Please fill in all fields');return}
+  if(pass.length<6){toast('⚠️ Password must be at least 6 characters');return}
+  if(pass!==pass2){toast('❌ Passwords do not match');return}
+  const btn=document.querySelector('#signupView .submit-btn');
+  btn.disabled=true;btn.textContent='⏳ Creating account...';
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, { displayName: fname+' '+lname });
+    closeModal('login');reset(['su-fname','su-lname','su-email','su-pass','su-pass2']);
+    toast(`🎉 Account created! Welcome, ${fname}!`);
+  } catch(err){
+    toast('❌ '+(err.code==='auth/email-already-in-use'?'Email already registered':err.message));
+  } finally { btn.disabled=false;btn.textContent='Create Account'; }
+}
+
+async function doForgot(){
+  const email=v('fp-email');
+  if(!email){toast('⚠️ Enter your email');return}
+  const btn=document.querySelector('#forgotView .submit-btn');
+  btn.disabled=true;btn.textContent='⏳ Sending...';
+  try {
+    await sendPasswordResetEmail(auth, email);
+    toast('📧 Password reset email sent! Check your inbox.');
+    reset(['fp-email']);showView('loginView');
+  } catch(err){
+    toast('❌ '+(err.code==='auth/user-not-found'?'No account found with this email':err.message));
+  } finally { btn.disabled=false;btn.textContent='Send Reset Link'; }
+}
+
+async function logout(){
+  await signOut(auth);
+  toast('👋 Logged out successfully');
+}
+
+function updateNavUser(){
+  const nu=document.getElementById('navUser'),lb=document.getElementById('navLoginBtn');
+  if(currentUser){
+    nu.classList.add('show');lb.style.display='none';
+    const name = currentUser.displayName||currentUser.email||'User';
+    document.getElementById('navAvatar').textContent=name[0].toUpperCase();
+    document.getElementById('navUserName').textContent=name.split(' ')[0];
+  } else {
+    nu.classList.remove('show');lb.style.display='block';
+  }
+}
+
+// ═══════ PHOTO PREVIEW (local preview only) ═══════
+function previewPhoto(input, previewId) {
+  const file = input.files[0];
+  if (!file) return;
+  // Store file reference for upload on submit
+  pendingPhotos[previewId] = file;
+  // Show local preview immediately
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById(previewId);
+    img.src = e.target.result;
+    img.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ═══════ STATES ═══════
+function renderStates(){
+  document.getElementById('statesGrid').innerHTML=STATES.map(s=>{
+    const cnt=spots.filter(x=>x.state===s.n).length;
+    return`<div class="state-card" onclick="openStatePanel('${s.n.replace(/'/g,"\'")}')">
+      <div class="state-emoji">${s.e}</div>
+      <div class="state-name">${s.n}</div>
+      <div class="state-type">${s.t}</div>
+      ${cnt?`<div class="state-count">📍 ${cnt} spot${cnt>1?'s':''}</div>`:''}
+      <button class="state-add">+ View & Add Spots</button>
+    </div>`;
+  }).join('');
+}
+
+let currentStateName='';
+let currentModule='spots';
+
+// ── Open/close dashboard ──
+function openStatePanel(state){
+  currentStateName=state;
+  const dash=document.getElementById('stateDashboard');
+  document.getElementById('sdashTitle').textContent=STATES.find(s=>s.n===state)?.e+' '+state;
+  document.getElementById('trendingStateName').textContent=state;
+  dash.classList.add('open');
+  openModule('spots');
+  updateCounters();
+  renderTrending();
+  dash.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function closeStatePanel(){
+  document.getElementById('stateDashboard').classList.remove('open');
+  currentStateName='';
+}
+
+// ── Update category counters ──
+function updateCounters(){
+  const s=currentStateName;
+  document.getElementById('cntSpots').textContent=spots.filter(x=>x.state===s).length;
+  document.getElementById('cntGems').textContent=gems.filter(x=>x.state===s).length;
+  document.getElementById('cntPartners').textContent=partners.filter(x=>x.dest&&x.dest.toLowerCase().includes(s.toLowerCase())).length;
+  document.getElementById('cntTrips').textContent=trips.filter(x=>x.dest&&x.dest.toLowerCase().includes(s.toLowerCase())).length;
+  document.getElementById('cntStories').textContent=stories.filter(x=>x.place&&x.place.toLowerCase().includes(s.toLowerCase())).length;
+}
+
+// ── Switch module ──
+function openModule(mod){
+  currentModule=mod;
+  ['spots','gems','partners','trips','stories'].forEach(m=>{
+    document.getElementById('mod'+cap(m)).classList.toggle('active',m===mod);
+    document.getElementById('cat'+cap(m)).classList.toggle('active',m===mod);
+  });
+  renderModule(mod);
+}
+
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+
+// ── Search/filter any module ──
+function filterModule(mod){ renderModule(mod); }
+
+function getSearch(id){ const el=document.getElementById(id); return el?el.value.trim().toLowerCase():''; }
+function getFilter(id){ const el=document.getElementById(id); return el?el.value:''; }
+
+function renderModule(mod){
+  if(mod==='spots') renderModSpots();
+  else if(mod==='gems') renderModGems();
+  else if(mod==='partners') renderModPartners();
+  else if(mod==='trips') renderModTrips();
+  else if(mod==='stories') renderModStories();
+}
+
+// ── Likes (localStorage) ──
+function getLikes(id){ try{return JSON.parse(localStorage.getItem('likes_'+id))||0}catch{return 0} }
+function isLiked(id){ try{return JSON.parse(localStorage.getItem('liked_'+id))||false}catch{return false} }
+function toggleLike(id,btnId){
+  const liked=isLiked(id);
+  const count=getLikes(id)+(liked?-1:1);
+  localStorage.setItem('likes_'+id,count);
+  localStorage.setItem('liked_'+id,!liked);
+  const btn=document.getElementById(btnId);
+  if(btn){btn.textContent=(liked?'🤍 ':'❤️ ')+count;btn.classList.toggle('liked',!liked);}
+}
+function getSaves(id){ try{return JSON.parse(localStorage.getItem('saved_'+id))||false}catch{return false} }
+function toggleSave(id,btnId){
+  const saved=getSaves(id);
+  localStorage.setItem('saved_'+id,!saved);
+  const btn=document.getElementById(btnId);
+  if(btn){btn.textContent=saved?'🔖 Save':'✅ Saved';btn.classList.toggle('saved',!saved);}
+}
+
+// ── Comments (localStorage) ──
+function getComments(id){ try{return JSON.parse(localStorage.getItem('comments_'+id))||[]}catch{return[]} }
+function addComment(id,inputId,listId){
+  const inp=document.getElementById(inputId);
+  if(!inp||!inp.value.trim()) return;
+  const name=currentUser?.displayName?.split(' ')[0]||'Guest';
+  const comments=getComments(id);
+  comments.push({name,text:inp.value.trim(),time:Date.now()});
+  localStorage.setItem('comments_'+id,JSON.stringify(comments));
+  inp.value='';
+  const list=document.getElementById(listId);
+  if(list) list.innerHTML=renderComments(id);
+}
+function renderComments(id){
+  return getComments(id).slice(-3).map(c=>`<div class="comment-item"><strong>${c.name}:</strong> ${c.text}</div>`).join('');
+}
+function commentsHtml(id){
+  const cid='cml_'+id;
+  const iid='cmi_'+id;
+  return `<div class="comments-section">
+    <div id="${cid}">${renderComments(id)}</div>
+    <div class="comment-input-row">
+      <input id="${iid}" placeholder="Add a comment…"/>
+      <button onclick="addComment('${id}','${iid}','${cid}')">Post</button>
+    </div>
+  </div>`;
+}
+
+// ── Stars ──
+function stars(n){ return '⭐'.repeat(Math.min(5,Math.max(0,Math.round(n||0))))||''; }
+
+// ─────────── SPOTS MODULE ───────────
+function renderModSpots(){
+  const s=currentStateName;
+  const search=getSearch('searchSpots');
+  const cat=getFilter('filterSpotsCat');
+  let data=spots.filter(x=>x.state===s);
+  if(search) data=data.filter(x=>(x.name+' '+x.desc+' '+x.loc).toLowerCase().includes(search));
+  if(cat) data=data.filter(x=>x.cat===cat);
+  const g=document.getElementById('modSpotsGrid');
+  if(!data.length){g.innerHTML=`<div class="mod-empty"><div class="me-icon">📍</div><p>No tourist spots for ${s} yet.</p><button class="mod-add-btn" onclick="openModal('stateGem')">+ Add First Spot</button></div>`;return;}
+  g.innerHTML=data.map(x=>{
+    const lc=getLikes(x.id);const il=isLiked(x.id);const sv=getSaves(x.id);
+    return`<div class="mod-card">
+      <div class="mod-card-img">${x.photo?`<img src="${x.photo}" alt="${x.name}"/>`:`<span style="font-size:2.4rem">${catEmoji(x.cat)}</span>`}</div>
+      <div class="mod-card-body">
+        <span class="mod-card-cat">${x.cat||'Spot'}</span>
+        <div class="mod-card-stars">${stars(x.rating)}</div>
+        <div class="mod-card-name">${x.name}</div>
+        <div class="mod-card-meta">📍 ${x.loc||s}</div>
+        <div class="mod-card-desc">${x.desc}</div>
+        ${x.travel?`<div style="font-size:.74rem;color:var(--text-light);margin-bottom:6px">ℹ️ ${x.travel}</div>`:''}
+        <div class="mod-card-actions">
+          <button class="mod-action-btn ${il?'liked':''}" id="lbtn_${x.id}" onclick="toggleLike('${x.id}','lbtn_${x.id}')">${il?'❤️':'🤍'} ${lc}</button>
+          <button class="mod-action-btn ${sv?'saved':''}" id="sbtn_${x.id}" onclick="toggleSave('${x.id}','sbtn_${x.id}')">${sv?'✅ Saved':'🔖 Save'}</button>
+          ${x.maplink?`<a class="mod-map-btn" href="${x.maplink}" target="_blank" rel="noopener">🗺️ Maps</a>`:''}
+          ${x.uid===currentUser?.uid?`<button class="del-btn" data-type="spot" data-id="${x.id}">🗑️</button>`:''}
+        </div>
+        <div style="font-size:.7rem;color:var(--text-light);margin-top:6px">👤 ${x.who}</div>
+        ${commentsHtml(x.id)}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────── GEMS MODULE ───────────
+function renderModGems(){
+  const s=currentStateName;
+  const search=getSearch('searchGems');
+  const cat=getFilter('filterGemsCat');
+  let data=gems.filter(x=>x.state===s);
+  if(search) data=data.filter(x=>(x.name+' '+x.desc).toLowerCase().includes(search));
+  if(cat) data=data.filter(x=>x.cat===cat);
+  const g=document.getElementById('modGemsGrid');
+  if(!data.length){g.innerHTML=`<div class="mod-empty"><div class="me-icon">💎</div><p>No hidden gems for ${s} yet.</p><button class="mod-add-btn" onclick="openModal('gem')">+ Add First Gem</button></div>`;return;}
+  g.innerHTML=data.map(x=>{
+    const lc=getLikes(x.id);const il=isLiked(x.id);const sv=getSaves(x.id);
+    return`<div class="mod-card">
+      <div class="mod-card-img">${x.photo?`<img src="${x.photo}" alt="${x.name}"/>`:`<span style="font-size:2.4rem">${catEmoji(x.cat)}</span>`}</div>
+      <div class="mod-card-body">
+        <span class="mod-card-cat">${x.cat||'Gem'}</span>
+        <div class="mod-card-name">${x.name}</div>
+        <div class="mod-card-desc">${x.desc}</div>
+        <div class="mod-card-actions">
+          <button class="mod-action-btn ${il?'liked':''}" id="lbtn_${x.id}" onclick="toggleLike('${x.id}','lbtn_${x.id}')">${il?'❤️':'🤍'} ${lc}</button>
+          <button class="mod-action-btn ${sv?'saved':''}" id="sbtn_${x.id}" onclick="toggleSave('${x.id}','sbtn_${x.id}')">${sv?'✅ Saved':'🔖 Save'}</button>
+          ${x.maplink?`<a class="mod-map-btn" href="${x.maplink}" target="_blank" rel="noopener">🗺️ Maps</a>`:''}
+          ${x.uid===currentUser?.uid?`<button class="del-btn" data-type="gem" data-id="${x.id}">🗑️</button>`:''}
+        </div>
+        <div style="font-size:.7rem;color:var(--text-light);margin-top:6px">👤 ${x.who}</div>
+        ${commentsHtml(x.id)}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────── PARTNERS MODULE ───────────
+function renderModPartners(){
+  const s=currentStateName;
+  const search=getSearch('searchPartners');
+  const style=getFilter('filterPartnersStyle');
+  let data=partners.filter(x=>x.dest&&x.dest.toLowerCase().includes(s.toLowerCase()));
+  if(search) data=data.filter(x=>(x.name+' '+x.bio+' '+x.dest).toLowerCase().includes(search));
+  if(style) data=data.filter(x=>x.style===style);
+  const g=document.getElementById('modPartnersGrid');
+  if(!data.length){g.innerHTML=`<div class="mod-empty"><div class="me-icon">🤝</div><p>No travel partners for ${s} yet.</p><button class="mod-add-btn" onclick="openModal('partner')">+ Add Profile</button></div>`;return;}
+  g.innerHTML=data.map(x=>`
+    <div class="partner-mod-card">
+      <div class="pmc-avatar">${x.name[0]}</div>
+      <div class="pmc-name">${x.name}</div>
+      <div class="pmc-badges">
+        <span class="pmc-badge">${x.style} Traveler</span>
+        ${x.date?`<span class="pmc-badge">📅 ${fmtDate(x.date)}</span>`:''}
+        <span class="pmc-badge">📍 ${x.dest}</span>
+      </div>
+      <div class="pmc-bio">${x.bio}</div>
+      ${x.contact?`<div style="font-size:.75rem;color:var(--text-light);margin-bottom:10px">📬 ${x.contact}</div>`:''}
+      <div class="pmc-actions">
+        <button class="pmc-req-btn" onclick="toast('✈️ Travel request sent to ${x.name.replace(/'/g,"\'")}!')">✈️ Send Request</button>
+        <button class="pmc-chat-btn" onclick="toast('💬 Chat request sent to ${x.name.replace(/'/g,"\'")}!')">💬 Chat</button>
+      </div>
+      ${x.uid===currentUser?.uid?`<button class="del-btn" data-type="partner" data-id="${x.id}" style="margin-top:8px">🗑️ Delete</button>`:''}
+    </div>`).join('');
+}
+
+// ─────────── TRIPS MODULE ───────────
+function renderModTrips(){
+  const s=currentStateName;
+  const search=getSearch('searchTrips');
+  const status=getFilter('filterTripsStatus');
+  let data=trips.filter(x=>x.dest&&x.dest.toLowerCase().includes(s.toLowerCase()));
+  if(search) data=data.filter(x=>(x.name+' '+x.dest+' '+x.desc).toLowerCase().includes(search));
+  if(status) data=data.filter(x=>x.open===status);
+  const g=document.getElementById('modTripsGrid');
+  if(!data.length){g.innerHTML=`<div class="mod-empty"><div class="me-icon">🗺️</div><p>No trip plans for ${s} yet.</p><button class="mod-add-btn" onclick="openModal('trip')">+ Create Trip</button></div>`;return;}
+  g.innerHTML=data.map(x=>{
+    const statusCls=x.open==='yes'?'open':'full';
+    const statusTxt=x.open==='yes'?'✅ Open':'🔒 Closed';
+    return`<div class="mod-card">
+      <div class="mod-card-body" style="padding:16px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span class="trip-status ${statusCls}">${statusTxt}</span>
+          <span style="font-size:.73rem;color:var(--text-light)">👥 ${x.num} travelers</span>
+        </div>
+        <div class="mod-card-name">${x.name}</div>
+        <div class="mod-card-meta">📍 ${x.dest}</div>
+        <div style="font-size:.74rem;color:var(--text-light);margin-bottom:8px">📅 ${fmtDate(x.start)} → ${fmtDate(x.end)}</div>
+        <div class="mod-card-desc">${x.desc}</div>
+        <div style="background:var(--green-pale);border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:.78rem;color:var(--green)">
+          🧑 ${x.who}${x.phone?' · 📞 '+x.phone:''}${x.email?' · ✉️ '+x.email:''}
+        </div>
+        <div class="mod-card-actions">
+          ${x.maplink?`<a class="mod-map-btn" href="${x.maplink}" target="_blank" rel="noopener">🗺️ Location</a>`:''}
+          ${x.open==='yes'?`<button class="mod-action-btn" onclick="openContactTrip('${x.id}')">✉️ Join Trip</button>`:''}
+          ${x.uid===currentUser?.uid?`<button class="del-btn" data-type="trip" data-id="${x.id}">🗑️</button>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────── STORIES MODULE ───────────
+function renderModStories(){
+  const s=currentStateName;
+  const search=getSearch('searchStories');
+  let data=stories.filter(x=>x.place&&x.place.toLowerCase().includes(s.toLowerCase()));
+  if(search) data=data.filter(x=>(x.name+' '+x.place+' '+x.story).toLowerCase().includes(search));
+  const g=document.getElementById('modStoriesGrid');
+  if(!data.length){g.innerHTML=`<div class="mod-empty"><div class="me-icon">📖</div><p>No stories about ${s} yet.</p><button class="mod-add-btn" onclick="openModal('story')">+ Share Story</button></div>`;return;}
+  g.innerHTML=data.map(x=>{
+    const lc=getLikes(x.id);const il=isLiked(x.id);const sv=getSaves(x.id);
+    return`<div class="mod-card">
+      ${x.photo?`<div class="mod-card-img"><img src="${x.photo}" alt="${x.place}"/></div>`:''}
+      <div class="mod-card-body">
+        <div class="mod-card-name">${x.name}</div>
+        <div class="mod-card-meta">📍 ${x.place}</div>
+        <div class="mod-card-desc" style="font-style:italic">"${x.story}"</div>
+        ${x.tip?`<div style="background:var(--gold-pale);border-left:3px solid var(--gold);padding:6px 10px;border-radius:0 7px 7px 0;font-size:.77rem;margin-bottom:8px">💡 ${x.tip}</div>`:''}
+        <div class="mod-card-actions">
+          <button class="mod-action-btn ${il?'liked':''}" id="lbtn_${x.id}" onclick="toggleLike('${x.id}','lbtn_${x.id}')">${il?'❤️':'🤍'} ${lc}</button>
+          <button class="mod-action-btn ${sv?'saved':''}" id="sbtn_${x.id}" onclick="toggleSave('${x.id}','sbtn_${x.id}')">${sv?'✅ Saved':'🔖 Save'}</button>
+          ${x.uid===currentUser?.uid?`<button class="del-btn" data-type="story" data-id="${x.id}">🗑️</button>`:''}
+        </div>
+        ${commentsHtml(x.id)}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────── TRENDING ───────────
+function renderTrending(){
+  const s=currentStateName;
+  const topSpots=spots.filter(x=>x.state===s).slice(0,3);
+  const topStories=stories.filter(x=>x.place&&x.place.toLowerCase().includes(s.toLowerCase())).slice(0,2);
+  const openTrips=trips.filter(x=>x.dest&&x.dest.toLowerCase().includes(s.toLowerCase())&&x.open==='yes').slice(0,2);
+  const activePartners=partners.filter(x=>x.dest&&x.dest.toLowerCase().includes(s.toLowerCase())).slice(0,2);
+  const all=[
+    ...topSpots.map(x=>({icon:'📍',text:x.name,sub:'Tourist Spot',mod:'spots'})),
+    ...topStories.map(x=>({icon:'📖',text:x.name+' @ '+x.place,sub:'Travel Story',mod:'stories'})),
+    ...openTrips.map(x=>({icon:'🗺️',text:x.name,sub:'Open Trip Plan',mod:'trips'})),
+    ...activePartners.map(x=>({icon:'🤝',text:x.name,sub:x.style+' Traveler',mod:'partners'}))
+  ];
+  const g=document.getElementById('trendingGrid');
+  if(!all.length){g.innerHTML='<p style="font-size:.85rem;color:var(--text-light)">Add content to see trending items here!</p>';return;}
+  g.innerHTML=all.map(t=>`<div class="trending-chip" onclick="openModule('${t.mod}')">
+    <span class="trending-chip-icon">${t.icon}</span>
+    <div><div class="trending-chip-text">${t.text}</div><div class="trending-chip-sub">${t.sub}</div></div>
+  </div>`).join('');
+}
+
+// ═══════ GEMS (global section) ═══════
+function renderGems(){
+  const g=document.getElementById('gemsGrid');
+  if(!gems.length){g.innerHTML=`<div class="empty-state"><div class="ei">🌟</div><p>No hidden gems yet — be the first to add one!</p><button class="add-btn" onclick="openModal('gem')">+ Add a Hidden Gem</button></div>`;return}
+  g.innerHTML=gems.map(x=>`
+    <div class="gem-card">
+      <div class="gem-img">${x.photo?`<img src="${x.photo}" alt="${x.name}" onerror="this.style.display='none'"/>`:`${catEmoji(x.cat)}`}</div>
+      <div class="gem-body">
+        <span class="gem-cat">${x.cat}</span>
+        <div class="gem-name">${x.name}</div>
+        <div class="gem-state">📍 ${x.state}</div>
+        <div class="gem-desc">${x.desc}</div>
+        ${x.maplink?`<a class="map-link-btn" href="${x.maplink}" target="_blank" rel="noopener">🗺️ View on Google Maps</a>`:''}
+        <div class="gem-contrib">👤 ${x.who}</div>
+        ${x.uid===currentUser?.uid?`<button class="del-btn" data-type="gem" data-id="${x.id}">🗑️ Delete</button>`:''}
+      </div>
+    </div>`).join('');
+}
+
+// ═══════ PARTNERS ═══════
+function renderPartners(){
+  const g=document.getElementById('partnersGrid');
+  if(!partners.length){g.innerHTML=`<div class="empty-state"><div class="ei">🤝</div><p>No travel partners yet — add your profile!</p><button class="add-btn" onclick="openModal('partner')">+ Add Your Profile</button></div>`;return}
+  g.innerHTML=partners.map(x=>`
+    <div class="partner-card">
+      <div class="partner-avatar">${x.name[0]}</div>
+      <div class="partner-name">${x.name}</div>
+      <span class="partner-style">${x.style} Traveler</span>
+      <div class="partner-dest">📍 ${x.dest}</div>
+      <div class="partner-date">📅 ${fmtDate(x.date)}</div>
+      <div class="partner-bio">${x.bio}</div>
+      ${x.contact?`<div class="gem-contrib" style="margin-bottom:10px">📬 ${x.contact}</div>`:''}
+      <button class="connect-btn" onclick="toast('Connection request sent to ${x.name.replace(/'/g,"\'")}! 🎉')">🤝 Connect</button>
+      ${x.uid===currentUser?.uid?`<button class="del-btn" data-type="partner" data-id="${x.id}">🗑️ Delete</button>`:''}
+    </div>`).join('');
+}
+
+// ═══════ TRIPS ═══════
+function renderTrips(){
+  const g=document.getElementById('tripsGrid');
+  if(!trips.length){g.innerHTML=`<div class="empty-state"><div class="ei">🗺️</div><p>No trip plans yet — create the first one!</p><button class="add-btn" onclick="openModal('trip')">+ Create a Trip Plan</button></div>`;return}
+  g.innerHTML=trips.map(x=>`
+    <div class="trip-card">
+      <div class="trip-name">${x.name}</div>
+      <div class="trip-dest">📍 ${x.dest}</div>
+      <div class="trip-meta">
+        <div class="trip-meta-item">📅 ${fmtDate(x.start)} → ${fmtDate(x.end)}</div>
+        <div class="trip-meta-item">👥 ${x.num} Traveler${x.num>1?'s':''}</div>
+      </div>
+      <div class="trip-desc">${x.desc}</div>
+      ${x.maplink?`<a class="trip-map-link" href="${x.maplink}" target="_blank" rel="noopener">🗺️ View Location on Map</a>`:''}
+      <div class="trip-contact-row">🧑 Organiser: <span>${x.who}</span>${x.phone?' &nbsp;📞 <span>'+x.phone+'</span>':''}${x.email?' &nbsp;✉️ <span>'+x.email+'</span>':''}</div>
+      <div class="trip-footer">
+        <span class="trip-open ${x.open}">${x.open==='yes'?'✅ Open to Partners':'🔒 Closed'}</span>
+        ${x.open==='yes'?`<div class="trip-actions">
+          <button class="interested-btn" onclick="toast('Interest noted! Contact the organiser above. 🎉')">✋ Interested</button>
+          <button class="contact-partner-btn" data-tripid="${x.id}">✉️ Contact as Partner</button>
+        </div>`:''}
+      </div>
+      ${x.uid===currentUser?.uid?`<button class="del-btn" data-type="trip" data-id="${x.id}">🗑️ Delete</button>`:''}
+    </div>`).join('');
+}
+
+// ═══════ STORIES ═══════
+function renderStories(){
+  const g=document.getElementById('storiesGrid');
+  if(!stories.length){g.innerHTML=`<div class="empty-state"><div class="ei">📖</div><p>No stories yet — share your experience!</p><button class="add-btn" onclick="openModal('story')">+ Share Your Story</button></div>`;return}
+  g.innerHTML=stories.map(x=>`
+    <div class="story-card">
+      ${x.photo?`<div class="story-photo"><img src="${x.photo}" alt="${x.place}"/></div>`:''}
+      <div class="story-text">${x.story}</div>
+      ${x.tip?`<div class="story-tip">💡 Tip: ${x.tip}</div>`:''}
+      <div class="story-author">
+        <div class="story-avatar">${x.name[0]}</div>
+        <div class="story-author-info"><strong>${x.name}</strong><span>📍 ${x.place}</span></div>
+      </div>
+      ${x.uid===currentUser?.uid?`<button class="del-btn" data-type="story" data-id="${x.id}">🗑️ Delete</button>`:''}
+    </div>`).join('');
+}
+
+// ═══════ DELETE ═══════
+const colMap={gem:'gems',partner:'partners',trip:'trips',story:'stories',spot:'spots'};
+const delMsg={gem:'🗑️ Gem deleted.',partner:'🗑️ Profile deleted.',trip:'🗑️ Trip deleted.',story:'🗑️ Story deleted.',spot:'🗑️ Spot deleted.'};
+async function del(type,id){
+  const col=colMap[type];if(!col)return;
+  try{await fsDel(col,id);toast(delMsg[type]);}
+  catch(err){toast('❌ Delete failed: '+err.message);}
+}
+
+// ═══════ SUBMITS ═══════
+async function submitGem(){
+  if(!req(['gm-name','gm-state','gm-cat','gm-desc','gm-who']))return;
+  const btn=document.getElementById('gemSubmitBtn');
+  btn.disabled=true;btn.textContent='⏳ Saving...';
+  try{
+    const file=pendingPhotos['gemPreview'];
+    const photo=file?await uploadToCloudinary(file,'gemUploadProgress'):'';
+    await fsAdd('gems',{name:v('gm-name'),state:v('gm-state'),cat:v('gm-cat'),desc:v('gm-desc'),photo,maplink:v('gm-maplink'),who:v('gm-who')});
+    closeModal('gem');delete pendingPhotos['gemPreview'];
+    reset(['gm-name','gm-state','gm-cat','gm-desc','gm-maplink','gm-who']);clearPreview('gemPreview','gm-photo-file');
+    toast('🌟 Hidden gem added!');setTimeout(()=>document.getElementById('gems').scrollIntoView({behavior:'smooth'}),300);
+  }catch(err){toast('❌ '+err.message);}
+  finally{btn.disabled=false;btn.textContent='🌟 Add Hidden Gem';}
+}
+
+async function submitPartner(){
+  if(!req(['pm-name','pm-style','pm-date','pm-dest','pm-bio','pm-contact']))return;
+  const btn=document.querySelector('#partnerModal .submit-btn');
+  btn.disabled=true;btn.textContent='⏳ Saving...';
+  try{
+    await fsAdd('partners',{name:v('pm-name'),style:v('pm-style'),date:v('pm-date'),dest:v('pm-dest'),bio:v('pm-bio'),contact:v('pm-contact')});
+    closeModal('partner');reset(['pm-name','pm-style','pm-date','pm-dest','pm-bio','pm-contact']);
+    toast('🤝 Profile added!');setTimeout(()=>document.getElementById('partners').scrollIntoView({behavior:'smooth'}),300);
+  }catch(err){toast('❌ '+err.message);}
+  finally{btn.disabled=false;btn.textContent='🤝 Add My Profile';}
+}
+
+async function submitTrip(){
+  if(!req(['tm-name','tm-dest','tm-start','tm-end','tm-num','tm-open','tm-desc','tm-who']))return;
+  const btn=document.querySelector('#tripModal .submit-btn');
+  btn.disabled=true;btn.textContent='⏳ Saving...';
+  try{
+    await fsAdd('trips',{name:v('tm-name'),dest:v('tm-dest'),start:v('tm-start'),end:v('tm-end'),num:v('tm-num'),open:v('tm-open'),desc:v('tm-desc'),maplink:v('tm-maplink'),who:v('tm-who'),phone:v('tm-phone'),email:v('tm-email')});
+    closeModal('trip');reset(['tm-name','tm-dest','tm-start','tm-end','tm-num','tm-open','tm-desc','tm-maplink','tm-who','tm-phone','tm-email']);
+    toast('🗺️ Trip plan created!');setTimeout(()=>document.getElementById('trips').scrollIntoView({behavior:'smooth'}),300);
+  }catch(err){toast('❌ '+err.message);}
+  finally{btn.disabled=false;btn.textContent='🗺️ Create Trip Plan';}
+}
+
+async function submitStory(){
+  if(!req(['sm-name','sm-place','sm-story']))return;
+  const btn=document.getElementById('storySubmitBtn');
+  btn.disabled=true;btn.textContent='⏳ Saving...';
+  try{
+    const file=pendingPhotos['storyPreview'];
+    const photo=file?await uploadToCloudinary(file,'storyUploadProgress'):'';
+    await fsAdd('stories',{name:v('sm-name'),place:v('sm-place'),story:v('sm-story'),tip:v('sm-tip'),photo});
+    closeModal('story');delete pendingPhotos['storyPreview'];
+    reset(['sm-name','sm-place','sm-story','sm-tip']);clearPreview('storyPreview','sm-photo-file');
+    toast('📸 Story shared!');setTimeout(()=>document.getElementById('stories').scrollIntoView({behavior:'smooth'}),300);
+  }catch(err){toast('❌ '+err.message);}
+  finally{btn.disabled=false;btn.textContent='📸 Share My Story';}
+}
+
+async function submitStateSpot(){
+  if(!req(['sg-name','sg-cat','sg-loc','sg-desc','sg-who']))return;
+  const btn=document.getElementById('sgSubmitBtn');
+  btn.disabled=true;btn.textContent='⏳ Saving...';
+  try{
+    const file=pendingPhotos['sgPreview'];
+    const photo=file?await uploadToCloudinary(file,'sgUploadProgress'):'';
+    await fsAdd('spots',{state:currentStateName,name:v('sg-name'),cat:v('sg-cat'),loc:v('sg-loc'),desc:v('sg-desc'),travel:v('sg-travel'),photo,maplink:v('sg-maplink'),who:v('sg-who')});
+    closeModal('stateGem');delete pendingPhotos['sgPreview'];
+    reset(['sg-name','sg-cat','sg-loc','sg-desc','sg-travel','sg-maplink','sg-who']);clearPreview('sgPreview','sg-photo-file');
+    toast(`🌟 Spot added to ${currentStateName}!`);
+    if(currentStateName) renderModSpots();
+  }catch(err){toast('❌ '+err.message);}
+  finally{btn.disabled=false;btn.textContent='🌟 Add Tourist Spot';}
+}
+
+function submitContactTrip(){
+  if(!req(['ct-name','ct-contact','ct-msg']))return;
+  closeModal('contactTrip');reset(['ct-name','ct-contact','ct-msg']);
+  toast('✉️ Message sent to trip organiser!');
+}
+
+// ═══════ CONTACT TRIP ═══════
+function openContactTrip(tripId){
+  const trip=trips.find(x=>x.id===tripId);if(!trip)return;
+  const info=document.getElementById('contactTripInfo');
+  let html='<h4>📋 '+trip.name+'</h4>';
+  html+='<p>📍 '+trip.dest+'</p>';
+  html+='<p>🧑 Organiser: <strong>'+trip.who+'</strong></p>';
+  if(trip.phone) html+='<p>📞 '+trip.phone+'</p>';
+  if(trip.email) html+='<p>✉️ '+trip.email+'</p>';
+  info.innerHTML=html;
+  openModal('contactTrip');
+}
+
+// ═══════ HELPERS ═══════
+function catEmoji(c){return{Nature:'🌿',Heritage:'🏛️',Adventure:'⛰️',Food:'🍜',Offbeat:'🔮',Beach:'🏖️',Mountains:'🏔️',Temple:'🛕',Waterfall:'🌊'}[c]||'🌟'}
+function fmtDate(d){try{return new Date(d).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}catch{return d||''}}
+function v(id){const el=document.getElementById(id);return el?el.value.trim():''}
+function req(ids){let ok=true;ids.forEach(id=>{const el=document.getElementById(id);if(!el)return;el.classList.remove('err');if(!el.value.trim()){el.classList.add('err');ok=false}});return ok}
+function reset(ids){ids.forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.classList.remove('err')}})}
+function clearPreview(imgId,inputId){const img=document.getElementById(imgId);if(img){img.src='';img.style.display='none'}const inp=document.getElementById(inputId);if(inp)inp.value=''}
+
+// ═══════ MODALS ═══════
+function openModal(t){document.getElementById(t+'Modal').classList.add('open')}
+function closeModal(t){document.getElementById(t+'Modal').classList.remove('open')}
+function openStateSpotModal(state){currentStateName=state;document.getElementById('sgTitle').textContent=`+ Add Tourist Spot in ${state}`;openModal('stateGem');}
+document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'))});
+
+// ═══════ EVENT DELEGATION ═══════
+document.addEventListener('click',function(e){
+  const delBtn=e.target.closest('.del-btn');
+  if(delBtn){del(delBtn.dataset.type,delBtn.dataset.id);return}
+  const cpBtn=e.target.closest('.contact-partner-btn');
+  if(cpBtn){openContactTrip(cpBtn.dataset.tripid);return}
+});
+
+// ═══════ FAB ═══════
+function toggleFab(){
+  const fab=document.getElementById('fabCluster');
+  const btn=document.getElementById('fabBtn');
+  fab.classList.toggle('open');
+  btn.textContent=fab.classList.contains('open')?'✕':'＋';
+}
+
+// ═══════ TOAST ═══════
+function toast(msg){const t=document.getElementById('otp-toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200)}
+
+// ═══════ NAVBAR ═══════
+const navbar=document.getElementById('navbar');
+document.getElementById('hamburger').addEventListener('click',()=>navbar.classList.toggle('menu-open'));
+const secs=[...document.querySelectorAll('section[id]')];
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',scrollY>40);
+  let cur='';secs.forEach(s=>{if(scrollY>=s.offsetTop-100)cur=s.id});
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+
+// ═══════ SCROLL REVEAL ═══════
+const io=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
+function observe(){document.querySelectorAll('.reveal:not(.visible)').forEach(el=>io.observe(el))}
+
+// ═══════ POPULATE STATE DD ═══════
+function fillStateDDs(){
+  const dd=document.getElementById('gm-state');
+  STATES.forEach(s=>{const o=document.createElement('option');o.value=s.n;o.textContent=s.n;dd.appendChild(o)});
+}
+
+// ═══════ INIT ═══════
+Object.assign(window,{
+  showView,doLogin,doSignup,doForgot,logout,
+  openModal,closeModal,openStatePanel,closeStatePanel,openStateSpotModal,
+  openContactTrip,submitContactTrip,submitGem,submitPartner,submitTrip,
+  submitStory,submitStateSpot,previewPhoto,toast,
+  openModule,switchTab:openModule,filterModule,toggleLike,toggleSave,addComment,toggleFab
+});
+fillStateDDs();
+observe();
+(function(){
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', './_ALL_INDIA_TOURIST_SPOTS.json', true);
+  xhr.onload = function(){
+    if(xhr.status !== 200){
+      document.getElementById('places-loading').style.display='none';
+      document.getElementById('places-error').style.display='block';
+      document.getElementById('places-error').textContent='Could not load spots: HTTP '+xhr.status;
+      return;
+    }
+    var data;
+    try{ data = JSON.parse(xhr.responseText); }
+    catch(e){
+      document.getElementById('places-loading').style.display='none';
+      document.getElementById('places-error').style.display='block';
+      document.getElementById('places-error').textContent='JSON parse error: '+e.message;
+      return;
+    }
+    document.getElementById('places-loading').style.display='none';
+    if(!Array.isArray(data)||!data.length){
+      document.getElementById('places-container').innerHTML='<div class="empty-state"><div class="ei">🗺️</div><p>No tourist spots found.</p></div>';
+      return;
+    }
+    var emojiMap={Nature:'🌿',Heritage:'🏛️',Adventure:'⛰️',Food:'🍜',Offbeat:'🔮',Beach:'🏖️',Mountains:'🏔️',Temple:'🛕',Waterfall:'🌊',Wildlife:'🐘',Fort:'🏯',Lake:'🏞️',Pilgrimage:'🙏',Park:'🌳'};
+    var html = data.map(function(p){
+      var name  = p.name||p.Name||p.NAME||p.place_name||p.Place_Name||p.tourist_place||p.Tourist_Place||p.placeName||p.title||p.Title||'';
+      var state = p.state||p.State||p.STATE||p.state_name||p.State_Name||p.stateName||'';
+      var desc  = p.description||p.Description||p.DESCRIPTION||p.desc||p.about||p.About||p.details||'';
+      var cat   = p.category||p.Category||p.type||p.Type||p.category_name||'';
+      var loc   = p.location||p.Location||p.district||p.District||p.city||p.City||'';
+      var map   = p.maplink||p.map_link||p.MapLink||p.google_maps||p.map_url||p.map||'';
+      var img   = p.photo||p.Photo||p.image||p.Image||p.img||p.picture||'';
+      var emoji = emojiMap[cat]||'🌟';
+      return '<div class="gem-card">'
+        +'<div class="gem-img" style="position:relative;overflow:hidden">'
+        +(img?'<img src="'+img+'" alt="'+name+'" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">':emoji)
+        +'</div>'
+        +'<div class="gem-body">'
+        +(cat?'<span class="gem-cat">'+cat+'</span>':'')
+        +'<div class="gem-name">'+(name||'Unnamed')+'</div>'
+        +(loc?'<div style="font-size:.75rem;color:var(--text-light);margin-bottom:3px">📌 '+loc+'</div>':'')
+        +(state?'<div class="gem-state">📍 '+state+'</div>':'')
+        +(desc?'<div class="gem-desc">'+desc+'</div>':'')
+        +(map?'<a href="'+map+'" target="_blank" rel="noopener" class="trip-map-link">🗺️ View on Map</a>':'')
+        +'</div></div>';
+    }).join('');
+    document.getElementById('places-container').innerHTML = html;
+    observe();
+  };
+  xhr.onerror = function(){
+    document.getElementById('places-loading').style.display='none';
+    document.getElementById('places-error').style.display='block';
+    document.getElementById('places-error').textContent='Network error loading tourist spots';
+  };
+  xhr.send();
+})();
+</script>
+</body>
+</html>
